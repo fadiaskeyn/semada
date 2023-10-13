@@ -102,7 +102,7 @@ Login
 </div>
 </div>
 <div class="card-footer ">
-<a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block mb-3">Get Started</a>
+<a href="absen_murid.php" class="btn btn-primary btn-round btn-lg btn-block mb-3"> Login </a>
 <div class="pull-left">
 <h6><a href="#pablo" class="link footer-link">Create Account</a></h6>
 </div>
