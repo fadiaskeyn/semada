@@ -5,20 +5,20 @@ Website Sistem E-Learning SMA NEGERI 02 JEMBER
 
 ## Screenshots
 Screenshots Project 1 - Login :
-![App Screenshot](unknown)
+![Screenshots Login](unknown)
 
 Screenshots Project 2 - Dashboard :
-![App Screenshot](unknown)
+![Screenshots Dashboard](unknown)
 
 Screenshot Project 3 - Features :
-![App Screenshot](unknown)
+![Screenshot Features](unknown)
 
 ## Features for Student
 - Login
 - Home
 - Dashboard
 - My Course
-- Test Anjay
+
 
 ## Features for Admin
 - Login

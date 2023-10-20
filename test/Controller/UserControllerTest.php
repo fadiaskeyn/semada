@@ -128,7 +128,7 @@ namespace dfdiag\Belajar\PHP\MVC\Controller {
             $this->expectOutputRegex("[Login user]");
             $this->expectOutputRegex("[id]");
             $this->expectOutputRegex("[password]");
-            $this->expectOutputRegex("[id atau password salah]");
+            $this->expectOutputRegex("[id atau password tidak boleh kosong]");
         }
 
         public function testLoginNotFound()
