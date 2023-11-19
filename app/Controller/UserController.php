@@ -7,6 +7,7 @@ use dfdiag\Belajar\PHP\MVC\App\View;
 use dfdiag\Belajar\PHP\MVC\Config\Database;
 use dfdiag\Belajar\PHP\MVC\Exception\ValidationException;
 use dfdiag\Belajar\PHP\MVC\Model\UserLoginRequest;
+use dfdiag\Belajar\PHP\MVC\Model\datamurid;
 use dfdiag\Belajar\PHP\MVC\Model\UserRegisterRequest;
 use dfdiag\Belajar\PHP\MVC\Repository\UserRepository;
 use dfdiag\Belajar\PHP\MVC\Service\UserService;
@@ -14,12 +15,12 @@ use dfdiag\Belajar\PHP\MVC\Service\UserService;
 class UserController
 {
     private UserService $userService;
-
     public function __construct()
     {
         $connection = Database::getConnection();
         $userRepository = new UserRepository($connection);
         $this->userService = new UserService($userRepository);
+        $this->model = $model;
 
     }
 
@@ -66,8 +67,11 @@ class UserController
         }catch (ValidationException $exception) {
             View::render('User/login',[
                 "title" =>'Login user',
-                "error" => $exception->getMessage()
+            "error" => $exception->getMessage()
             ]);
         }
     }
+
+
+    
 }

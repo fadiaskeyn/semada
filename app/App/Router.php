@@ -1,5 +1,4 @@
 <?php
-
 namespace dfdiag\Belajar\PHP\MVC\App;
 
 class Router
@@ -38,7 +37,7 @@ class Router
                 // call middleware
                 foreach ($route['middleware'] as $middleware){
                     $instance = new $middleware;
-                    $instance->before();
+                    $instance->before(); 
                 }
 
                 $function = $route['function'];

@@ -10,7 +10,7 @@ class HomeController
     function index()
     {
       View::render('Home/index', [
-          "title" => "Login Semada"
+          "title" => "Login Semada"               
           ]);
     }
 
