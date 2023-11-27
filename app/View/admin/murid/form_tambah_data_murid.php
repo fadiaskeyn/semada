@@ -7,10 +7,12 @@
     <label for="pwd" class="form-label">NIS : </label>
     <input type="text" class="form-control" id="noinduk" name="noinduk">
   </div>
-  <div class="mb-3">
-    <label for="pwd" class="form-label">Gender : </label>
-    <input type="text" class="form-control" id="gender" name="gender">
-  </div>
+  <select name="gender" id="gender">
+  <optgroup label="Pilih Kelamin">
+    <option value="L"> Perempuan</option>
+    <option value="P">Laki- Laki </option>
+  </optgroup>
+</select>
   <div class="mb-3">
     <label for="pwd" class="form-label">Nama : </label>
     <input type="text" class="form-control" id="nama" name="nama">

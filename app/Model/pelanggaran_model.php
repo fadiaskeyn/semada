@@ -25,14 +25,14 @@ private \PDO $conn;
     
   
     public function tambah($data) {
-        $query = "INSERT INTO pelanggaran ( id_pelanggaran, nama, nilai_poin) 
-                  VALUES (:idpel, :nama, :nilai)";
+        $query = "INSERT INTO pelanggaran (  nama, nilai_poin) 
+                  VALUES ( :nama, :nilai)";
         $stmt = $this->conn->prepare($query);
     
         if (!$stmt) {
             die('Error preparing statement: ' . $this->conn->error);
         }
-        $stmt->bindParam(':idpel', $data['id_pelanggaran']);
+        // $stmt->bindParam(':idpel', $data['id_pelanggaran']);
         $stmt->bindParam(':nama', $data['nama']); 
         $stmt->bindParam(':nilai', $data['nilai_poin']); 
         $stmt->execute();

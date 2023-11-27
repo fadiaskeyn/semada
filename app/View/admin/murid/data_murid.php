@@ -37,7 +37,7 @@
                     <td>
                     <a href="data_murid/edit/<?= $murid['noinduk'] ?>">Edit</a>
                     <a href="/admin/data_murid/hapus/<?= $murid['noinduk'] ?>" onclick="konfirmasiHapus()">Hapus</a>
-                    <a href="/admin/data_murid/hapus/<?= $murid['noinduk'] ?>" onclick="konfirmasiHapus()">Melanggar</a>
+                    <a href="/admin/data_murid/melanggar/<?= $murid['noinduk'] ?>">Melanggar</a>
                     </td>
                     
                 </tr>

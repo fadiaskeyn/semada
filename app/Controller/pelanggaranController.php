@@ -30,7 +30,6 @@ public function getpelanggaran()
             "title" => 'Daftar dan Jenis Pelanggaran',
             "dataPelanggaran" => $dataPelanggaran
         ]);
-        // return view(admin.data_murid', ['dataMurid' => $dataMurid]);
     }
 
     public function formpelanggaran()
@@ -45,7 +44,7 @@ public function getpelanggaran()
             $conn = Database::getConnection();
             $this->pelanggaran = new pelanggaran_model($conn);
             $data = [
-                'id_pelanggaran'  => $_POST['idpel'],
+                // 'id_pelanggaran'  => $_POST['idpel'],
                 'nama' => $_POST['nama'],
                 'nilai_poin' => $_POST['nilai']
             ];

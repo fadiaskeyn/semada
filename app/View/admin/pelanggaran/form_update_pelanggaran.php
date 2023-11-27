@@ -2,10 +2,6 @@
     
     <form class="col-md-6" action="/admin/pelanggaran/edit" method="post">
         <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
-            <div class="mb-3 mt-3">
-                <label for="no" class="form-label">No Pelanggaran:</label>
-                <input type="text" class="form-control" id="no" name="no" value="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>">
-            </div>
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama:</label>
                 <input type="text" class="form-control" id="nama" name="nama" value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>">

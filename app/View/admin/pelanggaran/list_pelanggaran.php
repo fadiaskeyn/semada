@@ -17,16 +17,17 @@
   <table class="table table-bordered" name="tabelmurid">
     <thead>
         <tr>
-            <th>ID Pelanggaran</th>
+            <th style="display:none">ID Pelanggaran</th>
             <th>Nama Pelanggaran</th>
             <th>Nilai Bobot</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
   <?php if(!empty($model["dataPelanggaran"])) : ?>
             <?php foreach( $model["dataPelanggaran"] as $pelanggaran) : ?>
                 <tr>
-                    <td><?= $pelanggaran['id_pelanggaran'] ?></td>
+                    <td style="display:none"><?= $pelanggaran['id_pelanggaran'] ?></td>
                     <td><?= $pelanggaran['nama'] ?></td>
                     <td><?= $pelanggaran['nilai_poin'] ?></td>
                     <td>

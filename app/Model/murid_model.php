@@ -14,7 +14,7 @@ private \PDO $conn;
     public function tampilkanmurid()
     {
         try {
-            $query = "SELECT absen, noinduk, gender, nama, kelas FROM muridtes";
+            $query = "SELECT absen, noinduk, gender, nama, kelas FROM murids";
             $statement = $this->conn->query($query);
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -25,7 +25,7 @@ private \PDO $conn;
     
   
     public function tambah($data) {
-        $query = "INSERT INTO muridtes (absen, noinduk, gender, nama, kelas, password) 
+        $query = "INSERT INTO murids (absen, noinduk, gender, nama, kelas, password) 
                   VALUES (:absen, :noinduk, :gender, :nama, :kelas, :password)";
         $stmt = $this->conn->prepare($query);
     
@@ -53,7 +53,7 @@ private \PDO $conn;
 public function getMuridById($noinduk)
 {
     try {
-        $query = "SELECT absen, noinduk, gender, nama, kelas FROM muridtes WHERE noinduk = :noinduk";
+        $query = "SELECT absen, noinduk, gender, nama, kelas FROM murids WHERE noinduk = :noinduk";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':noinduk', $noinduk);
         $stmt->execute();
@@ -75,7 +75,7 @@ public function getMuridById($noinduk)
     public function updateMurid($data)
     {
         try {
-            $query = "UPDATE muridtes SET absen = :absen, gender = :gender, nama = :nama, kelas = :kelas WHERE noinduk = :noinduk";
+            $query = "UPDATE murids SET absen = :absen, gender = :gender, nama = :nama, kelas = :kelas WHERE noinduk = :noinduk";
             $stmt = $this->conn->prepare($query);
 
             if (!$stmt) {
@@ -106,7 +106,7 @@ public function getMuridById($noinduk)
 public function hapusMurid($noinduk)
 {
     try {
-        $query = "DELETE FROM muridtes WHERE noinduk = :noinduk";
+        $query = "DELETE FROM murids WHERE noinduk = :noinduk";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':noinduk', $noinduk);
         $stmt->execute();
@@ -123,6 +123,26 @@ public function hapusMurid($noinduk)
         echo "Error: " . $e->getMessage();
     }
 }
+
+public function getDaftarPelanggaran()
+{
+    try {
+        $query = "SELECT nilai_poin, nama FROM pelanggaran";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        // Check if any rows are returned
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll();
+        } else {
+            return [];
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    return [];
+}
+
 
 
     
