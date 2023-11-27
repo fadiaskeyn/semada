@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-define('BASEURL', 'http://');
+define('BASEURL', 'http://semada.bjir');
 
 use dfdiag\Belajar\PHP\MVC\App\Router;
 use dfdiag\Belajar\PHP\MVC\Config\Database;
@@ -10,6 +10,7 @@ use dfdiag\Belajar\PHP\MVC\Controller\UserController;
 use dfdiag\Belajar\PHP\MVC\Controller\muridController;
 use dfdiag\Belajar\PHP\MVC\Controller\pelanggaranController;
 use dfdiag\Belajar\PHP\MVC\Controller\guruController;
+use dfdiag\Belajar\PHP\MVC\Controller\muridnakalController;
 
 //Database env prod or test
 Database::getConnection('prod');
@@ -29,6 +30,8 @@ Router::add('POST', '/admin/tambahmurid', muridController::class, 'tambahmurid',
 Router::add('GET', '/admin/data_murid/edit/([0-9a-zA-Z]*)', muridController::class, 'formupdatemurid');
 Router::add('POST', '/admin/data_murid/edit', muridController::class, 'updateMurid');
 Router::add('GET', '/admin/data_murid/hapus/([0-9a-zA-Z]*)', muridController::class, 'hapusMurid');
+Router::add('POST', '/admin/data_murid/melanggar', muridnakalController::class, 'tambahmuridnakal',[]);
+Router::add('GET', '/admin/data_murid/melanggar/([0-9a-zA-Z]*)', muridnakalController::class, 'formmelanggar');
 
 //Guru Controller
 Router::add('GET', '/admin/data_guru', guruController::class, 'getguru',[]);
@@ -45,5 +48,10 @@ Router::add('POST', '/admin/tambahpelanggaran', pelanggaranController::class, 't
 Router::add('GET', '/admin/pelanggaran/edit/([0-9a-zA-Z]*)', pelanggaranController::class, 'formupdatepelanggaran');
 Router::add('POST', '/admin/pelanggaran/edit', pelanggaranController::class, 'updatePelanggaran');
 Router::add('GET', '/admin/pelanggaran/hapus/([0-9a-zA-Z]*)', guruController::class, 'hapusPelanggaran');
+
+//murid nakal Controller
+Router::add('GET', '/admin/murid_nakal', muridnakalController::class, 'getmuridnakal',[]);
+Router::add('GET', '/admin/murid_nakal/hapus/([0-9a-zA-Z]*)', muridnakalController::class, 'hapusmuridnakal');
+
 
 Router::run();
