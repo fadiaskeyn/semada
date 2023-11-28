@@ -53,5 +53,7 @@ Router::add('GET', '/admin/pelanggaran/hapus/([0-9a-zA-Z]*)', guruController::cl
 Router::add('GET', '/admin/murid_nakal', muridnakalController::class, 'getmuridnakal',[]);
 Router::add('GET', '/admin/murid_nakal/hapus/([0-9a-zA-Z]*)', muridnakalController::class, 'hapusmuridnakal');
 
+//API
+
 
 Router::run();

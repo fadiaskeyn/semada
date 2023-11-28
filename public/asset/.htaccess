@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Menangani rute ke file atau direktori yang ada
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Menangani rute ke asset di folder public/asset
+RewriteRule ^public/asset/(.*)$ public/asset/$1 [L]
+
+# Menangani rute lainnya
+RewriteRule ^(.*)$ index.php [L]
