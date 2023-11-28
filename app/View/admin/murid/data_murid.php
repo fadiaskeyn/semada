@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../../../asset/css/style.css" rel="stylesheet">
+
   </head>
   <body class="bg-[#F3EEEA]">
     <!-- start navbar -->
     <nav class="bg-white shadow-md">
       <div class="max-w-screen px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-20 items-center justify-between">
+        <div class="relative flex h-90 items-center justify-between">
           <div class="flex flex-1 items-stretch justify-start">
             <div class="flex items-center">
               <img class="w-14" src="../../../../asset/assets/icon/logosmada.png" alt="logo smada" />
@@ -35,7 +36,7 @@
     <div class="flex flex-row h-screen">
       <div class="grow w-4/12">
         <!-- Start Sidebar -->
-        <div class="flex flex-col justify-between bg-white m-7 w-96 h-full rounded-lg text-xl p-4 overflow-auto">
+        <div class="flex flex-col justify-between bg-white m-7 w-900 h-full rounded-lg text-xl p-4 overflow-auto">
           <div>
             <ul>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow 
@@ -108,47 +109,45 @@
       <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full">
         <!-- START CONTENT -->
         <div class="flex justify-center items-center rounded-t-lg h-16 bg-[#575757] text-center font-bold text-white text-2xl">
-          Data Murid
-        </div>
-        <div class="flex flex-col h-full w-full p-24">
-          <div class="w-full h-16 flex justify-end items-center">
-            <label for="" class="font-semibold text-xl">cari</label>
-            <input type="text" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
-          </div>
-
-          <!-- <div class="h-full w-full overflow-auto"> -->
-            <table class="my-8 py-12 w-full">
-              <tr class="text-center">
-                <th class="border border-black">Absen</th>
-                <th class="border border-black">Nis</th>
-                <th class="border border-black">Jenis Kelamin</th>
-                <th class="border border-black">Nama</th>
-                <th class="border border-black">Kelas</th>
-                <th class="border border-black">Action</th>
-              </tr>
-              <?php if(!empty($model["dataMurid"])) : ?>
-            <?php foreach( $model["dataMurid"] as $murid) : ?>
-              <tr class="text-center">
-                <td class="border border-black"><?= $murid['absen'] ?> </td>
-                <td class="border border-black"><?= $murid['noinduk']?> </td>
-                <td class="border border-black"><?= $murid['gender']?> </td>
-                <td class="border border-black"><?= $murid['nama']  ?> </td>
-                <td class="border border-black"><?= $murid['kelas'] ?> </td>
-                <td class="border border-black gap-2 p-2">
-                  <button 
-                    onclick="showEdit()"
-                    type="" class="bg-green-500 w-1/4 text-white rounded-md hover:text-gray-200">Edit</button>
-                  <button 
-                    onclick="showBtnHapus()"
-                    type="" class="bg-red-700 w-1/4 text-white rounded-md hover:text-gray-200">Hapus</button>
-                  <button 
-                    onclick="showMelanggar()"
-                    type="" class="bg-gray-500 w-28 text-white rounded-md hover:text-gray-200">Melanggar</button>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-              <?php endif; ?>
-            </table>
+                Data Murid
+            </div>
+            <div class="flex flex-col h-full w-full p-5">
+                <div class="w-full h-16 flex justify-end items-center">
+                    <label for="" class="font-semibold text-xl">Cari</label>
+                    <input type="text" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+                </div>
+                
+                <div class="h-full w-full overflow-auto table-container">
+                    <table class="my-8 py-12 w-full">
+                        <tr class="text-center bg-[#575757] text-white">
+                            <th class="border border-black w-1/6">Absen</th>
+                            <th class="border border-black w-1/6">Nis</th>
+                            <th class="border border-black w-1/6">Jenis Kelamin</th>
+                            <th class="border border-black w-1/6">Nama</th>
+                            <th class="border border-black w-1/6">Kelas</th>
+                            <th class="border border-black w-1/6">Action</th>
+                             
+                        </tr>
+                        
+                        <?php if (!empty($model["dataMurid"])) : ?>
+                         
+                            <?php foreach ($model["dataMurid"] as $murid) : ?>
+                              
+                                <tr class="text-center">
+                                    <td class="border border-black"><?= $murid['absen'] ?> </td>
+                                    <td class="border border-black"><?= $murid['noinduk'] ?> </td>
+                                    <td class="border border-black"><?= $murid['gender'] ?> </td>
+                                    <td class="border border-black"><?= $murid['nama'] ?> </td>
+                                    <td class="border border-black"><?= $murid['kelas'] ?> </td>
+                                    <td class="border border-black gap-2 p-2">
+                                        <button onclick="showEdit()" type="" class="bg-green-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Edit</button>
+                                        <button onclick="showBtnHapus()" type="" class="bg-red-700 w-20 h-8 text-white rounded-md hover:text-gray-200">Hapus</button>
+                                        <button onclick="showMelanggar()" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </table>
             <!-- MODAL ACTION -->
             <!-- start modal tombol edit -->
             <div 
