@@ -43,7 +43,7 @@ function exitLogout() {
 }
 /* Data Siswa */
 /* Modal btn Hapus*/
-function showBtnHapus(){
+function showBtnHapus(namaSiswa){
   let hapus = document.getElementById('btnHapus');
   hapus.classList.remove('hidden');
   hapus.classList.add('flex');

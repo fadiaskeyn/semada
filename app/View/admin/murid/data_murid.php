@@ -106,48 +106,47 @@
         </div>
 
       </div>
-      <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full">
+      <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full overflow-hidden">
         <!-- START CONTENT -->
-        <div class="flex justify-center items-center rounded-t-lg h-16 bg-[#575757] text-center font-bold text-white text-2xl">
-                Data Murid
+        <div class="flex justify-center items-center bg-[#575757] text-center font-bold text-white text-2xl">
+          <h1 class="p-4">Data Murid</h1>
             </div>
             <div class="flex flex-col h-full w-full p-5">
                 <div class="w-full h-16 flex justify-end items-center">
                     <label for="" class="font-semibold text-xl">Cari</label>
-                    <input type="text" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+                    <input id="searchInput" type="search" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
                 </div>
-                
-                <div class="h-full w-full overflow-auto table-container">
-                    <table class="my-8 py-12 w-full">
-                        <tr class="text-center bg-[#575757] text-white">
-                            <th class="border border-black w-1/6">Absen</th>
-                            <th class="border border-black w-1/6">Nis</th>
-                            <th class="border border-black w-1/6">Jenis Kelamin</th>
-                            <th class="border border-black w-1/6">Nama</th>
-                            <th class="border border-black w-1/6">Kelas</th>
-                            <th class="border border-black w-1/6">Action</th>
-                             
-                        </tr>
-                        
-                        <?php if (!empty($model["dataMurid"])) : ?>
-                         
-                            <?php foreach ($model["dataMurid"] as $murid) : ?>
-                              
-                                <tr class="text-center">
-                                    <td class="border border-black"><?= $murid['absen'] ?> </td>
-                                    <td class="border border-black"><?= $murid['noinduk'] ?> </td>
-                                    <td class="border border-black"><?= $murid['gender'] ?> </td>
-                                    <td class="border border-black"><?= $murid['nama'] ?> </td>
-                                    <td class="border border-black"><?= $murid['kelas'] ?> </td>
-                                    <td class="border border-black gap-2 p-2">
-                                        <button onclick="showEdit()" type="" class="bg-green-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Edit</button>
-                                        <button onclick="showBtnHapus()" type="" class="bg-red-700 w-20 h-8 text-white rounded-md hover:text-gray-200">Hapus</button>
-                                        <button onclick="showMelanggar()" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </table>
+          <div class="h-full w-full overflow-auto">
+            <table class="py-12 w-full">
+              <thead class="border boreder-black sticky top-0">
+                <tr class="text-center bg-gray-200 shadow">
+                  <th class="w-[10%] border border-black ">Absen</th>
+                  <th class="w-[10%] border border-black ">Nis</th>
+                  <th class="w-[10%] border border-black ">Jenis Kelamin</th>
+                  <th class="w-[40%] border border-black ">Nama</th>
+                  <th class="w-[10%] border border-black ">Kelas</th>
+                  <th class="w-[20%] border border-black ">Action</th>
+                </tr>
+              </thead>
+              <?php if (!empty($model["dataMurid"])) : ?>
+              <tbody>
+              <?php foreach ($model["dataMurid"] as $murid) : ?>
+                <tr class="text-center table-row">
+                  <td class="border border-black"><?= $murid['absen'] ?> </td>
+                  <td class="border border-black"><?= $murid['noinduk'] ?> </td>
+                  <td class="border border-black"><?= $murid['gender'] ?> </td>
+                  <td class="border border-black"><?= $murid['nama'] ?> </td>
+                  <td class="border border-black"><?= $murid['kelas'] ?> </td>
+                  <td class="flex border border-black gap-2 p-2">
+                    <button onclick="showEdit()" type="" class="bg-green-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Edit</button>
+                    <button onclick="showBtnHapus()" type="" class="bg-red-700 w-20 h-8 text-white rounded-md hover:text-gray-200">Hapus</button>
+                    <button onclick="showMelanggar()" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+              </tbody>
+              <?php endif; ?>
+            </table>
             <!-- MODAL ACTION -->
             <!-- start modal tombol edit -->
             <div 
@@ -240,5 +239,6 @@
       </div>
     </div>
     <script src="../../../../asset/js/modal.js"></script>
+    <script src="../../../../asset/js/search.js"></script>
   </body>
 </html>
