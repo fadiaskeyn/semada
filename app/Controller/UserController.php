@@ -20,75 +20,38 @@ class UserController
         $connection = Database::getConnection();
         $userRepository = new UserRepository($connection);
         $this->userService = new UserService($userRepository);
-        $this->model = $model;
-
     }
-
-    public function register()
+    
+    public function loginuser()
     {
-        View::render('User/register',[
-            "title" =>'Register new User'
+        View::render('user/login',
+         [
+            "title" => 'Data Semua Murid',
+            "dataGuru" => ""
         ]);
-    }
 
-    public function postRegister()
-    {
-        $request = new UserRegisterRequest();
-        $request -> id = $_POST['id'];
-        $request -> nama = $_POST['name'];
-        $request -> password = $_POST['password'];
         try {
-            $this->userService->register($request);
-            View::redirect("/users/login");
-        }catch (ValidationException $exception)
-        {
-            View::render('User/register',[
-                "title" =>'Register new User',
-                "error" => $exception->getMessage()
-            ]);
-        }
-    }
-    public function login()
-    {
-        try {
-            if ($_POST['email'] == "" || $_POST['password'] == "") {
+            if ($_POST['noinduk'] == "" || $_POST['password'] == "") {
                 throw new ValidationException("Field harus di isi");
             }
-            $row = $this->login->login($_POST['email'], $_POST['password']);
+            $row = $this->login->login($_POST['noinduk'], $_POST['noinduk']);
             if (!$row) {
-                throw new ValidationException("Username dan password salah");
+                throw new ValidationException("NIP atau password salah");
             }
             session_start();
             $_SESSION['status_login'] = true;
-            $_SESSION['uid_user'] = $row['userId'];
+            $_SESSION['noinduk'] = $row['noinduk'];
             $_SESSION['username'] = $row['username'];
-            $_SESSION['level'] = $row['level'];
-            if($row['level'] == 'admin'){
-                View::redirect("/admin/dashboard");
-            }else if($row["level"] == "customer" || $row["level"] == "agen"){
-                View::redirect("/");
+            $_SESSION['role'] = $row['role'];
+            if($row['role'] == 'admin'){
+                View::redirect("/admin/data_murid");
+            }else if($row["role"] == "guru"){
+                View::redirect("/admin/data_murid");
             }
         } catch (\Throwable $th) {
             View::render("login", ["error" => $th->getMessage()]);
         }
     }
-
-    public function postLogin()
-    {
-        $request = new UserLoginRequest();
-        $request->id = $_POST['id'];
-        $request->password = $_POST['password'];
-        try {
-            $this->userService->login($request);
-            View::redirect('/');
-        }catch (ValidationException $exception) {
-            View::render('User/login',[
-                "title" =>'Login user',
-            "error" => $exception->getMessage()
-            ]);
-        }
-    }
-
-
     
+
 }

@@ -27,7 +27,6 @@ class Router
         if (isset($_SERVER['PATH_INFO'])) {
             $path = $_SERVER['PATH_INFO'];
         }
-
         $method = $_SERVER['REQUEST_METHOD'];
 
         foreach (self::$routes as $route) {
