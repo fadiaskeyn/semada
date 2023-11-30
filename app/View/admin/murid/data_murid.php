@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../../../asset/css/style.css" rel="stylesheet">
-
   </head>
   <body class="bg-[#F3EEEA]">
     <!-- start navbar -->
@@ -45,7 +44,7 @@
               </li>
               <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-gray-200">
-                <a href="data_siswa.html" class="ml-4 w-full inline-block">Data Murid</a>
+                <span class="cursor-pointer ml-4 w-full inline-block">Data Murid</span>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
@@ -88,8 +87,8 @@
         <div 
           onclick="exitLogout()"
           id="modalLogout"
-          class="fixed bg-black w-screen h-screen bg-opacity-30 top-0 left-0 
-          justify-center items-center opacity-0 hidden transition-opacity duration-200 backdrop-blur-sm shadow">
+          class="fixed bg-black w-screen h-screen bg-opacity-50 top-0 left-0 
+          justify-center items-center opacity-0 hidden transition-opacity duration-200 backdrop-blur-sm shadow z-50">
           <div 
             onclick="event.stopImmediatePropagation()"
             class="rounded-lg text-center bg-green-100 w-96 h-36">
@@ -112,13 +111,55 @@
           <h1 class="p-4">Data Murid</h1>
             </div>
             <div class="flex flex-col h-full w-full p-5">
-                <div class="w-full h-16 flex justify-end items-center">
-                    <label for="" class="font-semibold text-xl">Cari</label>
-                    <input id="searchInput" type="search" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+          <div>
+            <button 
+              id="btnTambahSiswa"
+              class="flex justify-center items-center bg-green-500 rounded-full text-white font-semibold h-10 w-48">
+              <span class="text-3xl">+ 
+              <a href="./data_murid/tambah" class="text-xl hover:text-inherit">Tambah Siswa</a>
+              </span>
+            </button>
+          </div> 
+          <!-- modal tambahsiswa start -->
+          <div 
+              onclick="closeEdit()"
+              id="formEdit"
+              class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+              <div 
+                class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
+                <div 
+                  onclick="closeEdit()"
+                  class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+                  <h1>Edit Pelanggaran</h1>
+                  <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
                 </div>
+                <form
+                  onclick="event.stopImmediatePropagation()"
+                >
+                  <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Jenis Pelanggaran</label>
+                    <input type="" name="" value="" class="w-96 border-2 border-green-500">
+                  </div>
+                  <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Keterangan</label>
+                    <textarea rows="3" cols="40" class="border-2 border-green-500">Terlambat</textarea>
+                  </div>
+                  <div class="flex justify-end p-4">
+                    <button
+                      onclick="submitEdit()"
+                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          <!-- modal tambahsiswa end -->
+          <div class="w-full h-16 flex justify-end items-center">
+            <label for="" class="font-semibold text-xl">Cari</label>
+            <input id="searchInput" type="search" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+          </div>
           <div class="h-full w-full overflow-auto">
             <table class="py-12 w-full">
-              <thead class="border boreder-black sticky top-0">
+              <thead class="border boreder-black sticky top-0 z-0">
                 <tr class="text-center bg-gray-200 shadow">
                   <th class="w-[10%] border border-black ">Absen</th>
                   <th class="w-[10%] border border-black ">Nis</th>
@@ -130,7 +171,7 @@
               </thead>
               <?php if (!empty($model["dataMurid"])) : ?>
               <tbody>
-              <?php foreach ($model["dataMurid"] as $murid) : ?>
+                <?php foreach ($model["dataMurid"] as $murid) : ?>
                 <tr class="text-center table-row">
                   <td class="border border-black"><?= $murid['absen'] ?> </td>
                   <td class="border border-black"><?= $murid['noinduk'] ?> </td>
@@ -143,7 +184,7 @@
                     <button onclick="showMelanggar()" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
                   </td>
                 </tr>
-              <?php endforeach; ?>
+                <?php endforeach; ?>
               </tbody>
               <?php endif; ?>
             </table>
@@ -190,9 +231,12 @@
               <div 
                 onclick="event.stopImmediatePropagation()"
                 class="text-center bg-[#EAFFEF] w-3/12 h-64 rounded-lg shadow">
-                <h1 class="mx-auto my-5 py-6 w-80">Apakah anda ingin menghapus data siswa nama_siswa ?</h1>
+                <h1 class="mx-auto my-5 py-6 w-80">Apakah anda ingin menghapus pelanggaran ?</h1>
                 <div class="flex my-12 justify-evenly items-center">
-                  <button type="" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">Ya</button>
+                  <button type="" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">
+                    <!-- TODO DELETE -->
+                    <a href="./data_murid/hapus">Ya</a>
+                    </button>
                   <button 
                     onclick="hideBtnHapus()"
                     type="" class="bg-green-500 w-20 rounded-full text-white text-lg hover:bg-green-600">Tidak</button>
@@ -240,5 +284,6 @@
     </div>
     <script src="../../../../asset/js/modal.js"></script>
     <script src="../../../../asset/js/search.js"></script>
+    <script src="../../../../asset/js/scripts.js"></script>
   </body>
 </html>
