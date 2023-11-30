@@ -1,0 +1,14 @@
+(query menampilkan murid dengan jumlah poin yang dimiliki)
+
+SELECT
+    murids.noinduk,
+    murids.nama,
+    COALESCE(SUM(pelanggaran.nilai_poin), 0) AS total_poin
+FROM
+    murids
+LEFT JOIN
+    murid_nakal ON murids.noinduk = murid_nakal.noinduk
+LEFT JOIN
+    pelanggaran ON murid_nakal.id_pelanggaran = pelanggaran.id_pelanggaran
+GROUP BY
+    murids.noinduk, murids.nama;

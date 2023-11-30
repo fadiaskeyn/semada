@@ -48,11 +48,29 @@ class UserController
             ]);
         }
     }
-    public function  login()
+    public function login()
     {
-        View::render('User/login',[
-            "title" => 'Login user'
-        ]);
+        try {
+            if ($_POST['email'] == "" || $_POST['password'] == "") {
+                throw new ValidationException("Field harus di isi");
+            }
+            $row = $this->login->login($_POST['email'], $_POST['password']);
+            if (!$row) {
+                throw new ValidationException("Username dan password salah");
+            }
+            session_start();
+            $_SESSION['status_login'] = true;
+            $_SESSION['uid_user'] = $row['userId'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['level'] = $row['level'];
+            if($row['level'] == 'admin'){
+                View::redirect("/admin/dashboard");
+            }else if($row["level"] == "customer" || $row["level"] == "agen"){
+                View::redirect("/");
+            }
+        } catch (\Throwable $th) {
+            View::render("login", ["error" => $th->getMessage()]);
+        }
     }
 
     public function postLogin()
@@ -60,7 +78,6 @@ class UserController
         $request = new UserLoginRequest();
         $request->id = $_POST['id'];
         $request->password = $_POST['password'];
-
         try {
             $this->userService->login($request);
             View::redirect('/');

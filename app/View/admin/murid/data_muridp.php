@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
   <head>
     <title>Data Murid</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../../../asset/css/style.css" rel="stylesheet">
-
   </head>
   <body class="bg-[#F3EEEA]">
     <!-- start navbar -->
     <nav class="bg-white shadow-md">
       <div class="max-w-screen px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-90 items-center justify-between">
+        <div class="relative flex h-20 items-center justify-between">
           <div class="flex flex-1 items-stretch justify-start">
             <div class="flex items-center">
               <img class="w-14" src="../../../../asset/assets/icon/logosmada.png" alt="logo smada" />
@@ -37,7 +35,7 @@
     <div class="flex flex-row h-screen">
       <div class="grow w-4/12">
         <!-- Start Sidebar -->
-        <div class="flex flex-col justify-between bg-white m-7 w-900 h-full rounded-lg text-xl p-4 overflow-auto">
+        <div class="flex flex-col justify-between bg-white m-7 w-96 h-full rounded-lg text-xl p-4 overflow-auto">
           <div>
             <ul>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow 
@@ -107,45 +105,48 @@
         </div>
 
       </div>
-      <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full overflow-hidden">
+      <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full">
         <!-- START CONTENT -->
-        <div class="flex justify-center items-center bg-[#575757] text-center font-bold text-white text-2xl">
-          <h1 class="p-4">Data Murid</h1>
-            </div>
-            <div class="flex flex-col h-full w-full p-5">
-                <div class="w-full h-16 flex justify-end items-center">
-                    <label for="" class="font-semibold text-xl">Cari</label>
-                    <input id="searchInput" type="search" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
-                </div>
+        <div class="flex justify-center items-center rounded-t-lg h-16 bg-[#575757] text-center font-bold text-white text-2xl">
+          Data Murid
+        </div>
+        <div class="flex flex-col h-full w-full p-24">
+          <div class="w-full h-16 flex justify-end items-center">
+            <label for="" class="font-semibold text-xl">cari</label>
+            <input type="text" name="" placeholder="Search..." class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+          </div>
+
           <div class="h-full w-full overflow-auto">
-            <table class="py-12 w-full">
-              <thead class="border boreder-black sticky top-0">
-                <tr class="text-center bg-gray-200 shadow">
-                  <th class="w-[10%] border border-black ">Absen</th>
-                  <th class="w-[10%] border border-black ">Nis</th>
-                  <th class="w-[10%] border border-black ">Jenis Kelamin</th>
-                  <th class="w-[40%] border border-black ">Nama</th>
-                  <th class="w-[10%] border border-black ">Kelas</th>
-                  <th class="w-[20%] border border-black ">Action</th>
-                </tr>
-              </thead>
-              <?php if (!empty($model["dataMurid"])) : ?>
-              <tbody>
-              <?php foreach ($model["dataMurid"] as $murid) : ?>
-                <tr class="text-center table-row">
-                  <td class="border border-black"><?= $murid['absen'] ?> </td>
-                  <td class="border border-black"><?= $murid['noinduk'] ?> </td>
-                  <td class="border border-black"><?= $murid['gender'] ?> </td>
-                  <td class="border border-black"><?= $murid['nama'] ?> </td>
-                  <td class="border border-black"><?= $murid['kelas'] ?> </td>
-                  <td class="flex border border-black gap-2 p-2">
-                    <button onclick="showEdit()" type="" class="bg-green-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Edit</button>
-                    <button onclick="showBtnHapus()" type="" class="bg-red-700 w-20 h-8 text-white rounded-md hover:text-gray-200">Hapus</button>
-                    <button onclick="showMelanggar()" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
-                  </td>
-                </tr>
+            <table class="my-8 py-12 w-full">
+              <tr class="text-center">
+                <th class="border border-black">Absen</th>
+                <th class="border border-black">Nis</th>
+                <th class="border border-black">Jenis Kelamin</th>
+                <th class="border border-black">Nama</th>
+                <th class="border border-black">Kelas</th>
+                <th class="border border-black">Action</th>
+              </tr>
+              <?php if(!empty($model["dataMurid"])) : ?>
+            <?php foreach( $model["dataMurid"] as $murid) : ?>
+              <tr class="text-center">
+                <td class="border border-black"><?= $murid['absen'] ?> </td>
+                <td class="border border-black"><?= $murid['noinduk']?> </td>
+                <td class="border border-black"><?= $murid['gender']?> </td>
+                <td class="border border-black"><?= $murid['nama']  ?> </td>
+                <td class="border border-black"><?= $murid['kelas'] ?> </td>
+                <td class="border border-black gap-2 p-2">
+                  <button 
+                    onclick="showEdit()"
+                    type="" class="bg-green-500 w-1/4 text-white rounded-md hover:text-gray-200">Edit</button>
+                  <button 
+                    onclick="showBtnHapus()"
+                    type="" class="bg-red-700 w-1/4 text-white rounded-md hover:text-gray-200">Hapus</button>
+                  <button 
+                    onclick="calanggar()"
+                    type="" class="bg-gray-500 w-28 text-white rounded-md hover:text-gray-200">Melanggar</button>
+                </td>
+              </tr>
               <?php endforeach; ?>
-              </tbody>
               <?php endif; ?>
             </table>
             <!-- MODAL ACTION -->
@@ -176,7 +177,7 @@
                   <div class="flex justify-end p-4">
                     <button
                       onclick="submitEdit()"
-                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                      type="submit" class="w-15 h-5 bg-green-500 text-white shadow rounded-full">Simpan</button>
                   </div>
                 </form>
               </div>
@@ -240,58 +241,55 @@
       </div>
     </div>
     <script src="../../../../asset/js/modal.js"></script>
-    <script src="../../../../asset/js/search.js"></script>
+    <script>
+  $(document).ready(function() {
+    $('#datatable').DataTable({
+      "pagingType": "full_numbers",
+      "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+      responsive: true,
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Cari Data",
+      }
+    });
+
+    // Menambahkan tombol cari di atas tabel
+    var searchInput = $(
+      '<input type="text" placeholder="Cari Data" class="border-2 border-black w-64 h-1/2 ml-4 px-2">'
+    );
+    $('#datatable_filter').append(searchInput);
+
+    var table = $('#datatable').DataTable();
+
+    // Edit record
+    table.on('click', '.edit', function() {
+      $tr = $(this).closest('tr');
+      if ($($tr).hasClass('child')) {
+        $tr = $tr.prev('.parent');
+      }
+
+      var data = table.row($tr).data();
+      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+    });
+
+    // Delete a record
+    table.on('click', '.remove', function(e) {
+      $tr = $(this).closest('tr');
+      if ($($tr).hasClass('child')) {
+        $tr = $tr.prev('.parent');
+      }
+      table.row($tr).remove().draw();
+      e.preventDefault();
+    });
+
+    // Like record
+    table.on('click', '.like', function() {
+      alert('You clicked on Like button');
+    });
+  });
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"80fb029b493f6016","version":"2023.8.0","b":1,"token":"1b7cbb72744b40c580f8633c6b62637e","si":100}' crossorigin="anonymous"></script>
+
+
   </body>
-=======
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
-<div class="container mt-3">
-  <h2> TOLONGA TEMPIKNYA </h2>
-  <br>            
-  <a href="data_murid/tambah" class="btn btn-primary">Tambah Data</a>
-
-  <table class="table table-bordered" name="tabelmurid">
-    <thead>
-        <tr>
-            <th>Absen</th>
-            <th>NIS</th>
-            <th>Gender</th>
-            <th>Nama</th>
-            <th>Kelas</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-  <?php if(!empty($model["dataMurid"])) : ?>
-            <?php foreach( $model["dataMurid"] as $murid) : ?>
-                <tr>
-                    <td><?= $murid['absen'] ?></td>
-                    <td><?= $murid['noinduk']?></td>
-                    <td><?= $murid['gender']?></td>
-                    <td><?= $murid['nama']  ?></td>
-                    <td><?= $murid['kelas'] ?></td>
-                    <td>
-                    <a href="data_murid/edit/<?= $murid['noinduk'] ?>">Edit</a>
-                    <a href="/admin/data_murid/hapus/<?= $murid['noinduk'] ?>" onclick="konfirmasiHapus()">Hapus</a>
-                    <a href="/admin/data_murid/melanggar/<?= $murid['noinduk'] ?>">Melanggar</a>
-                    </td>
-                    
-                </tr>
-            <?php endforeach; ?>
-     <?php endif; ?>
-    </tbody>
-</table>
-
-
-</div>
-
-</body>
->>>>>>> 7b7cc68 (api error dikit)
 </html>

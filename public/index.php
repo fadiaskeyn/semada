@@ -10,6 +10,7 @@ use dfdiag\Belajar\PHP\MVC\Controller\UserController;
 use dfdiag\Belajar\PHP\MVC\Controller\muridController;
 use dfdiag\Belajar\PHP\MVC\Controller\pelanggaranController;
 use dfdiag\Belajar\PHP\MVC\Controller\guruController;
+use dfdiag\Belajar\PHP\MVC\Controller\API_Controller;
 use dfdiag\Belajar\PHP\MVC\Controller\muridnakalController;
 
 //Database env prod or test
@@ -54,6 +55,8 @@ Router::add('GET', '/admin/murid_nakal', muridnakalController::class, 'getmuridn
 Router::add('GET', '/admin/murid_nakal/hapus/([0-9a-zA-Z]*)', muridnakalController::class, 'hapusmuridnakal');
 
 //API
+Router::add('POST', '/API/murid_login', API_Controller::class, 'apilogin', []);
+// Router::add('GET', '/API/murid_login', API_Controller::class, 'getMurid',[]);
 
 
 Router::run();
