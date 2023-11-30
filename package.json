@@ -42,6 +42,7 @@
     "jiti": "^1.21.0",
     "lilconfig": "^2.1.0",
     "lines-and-columns": "^1.2.4",
+    "lite-server": "^2.6.1",
     "merge2": "^1.4.1",
     "micromatch": "^4.0.5",
     "minimatch": "^3.1.2",
@@ -82,9 +83,9 @@
     "yaml": "^2.3.4"
   },
   "scripts": {
-    "dev" : "tailwindcss -i ./src/input.css -o ./public/asset/css/style.css --watch",
-    "final" : "tailwindcss -o ./public/asset/css/final.css --minify",
-    "serv" : "lite-server"
+    "dev": "tailwindcss -i ./src/input.css -o ./public/asset/css/style.css --watch",
+    "final": "tailwindcss -o ./public/asset/css/final.css --minify",
+    "serv": "lite-server"
   },
   "keywords": [],
   "author": "",
