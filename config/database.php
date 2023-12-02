@@ -9,7 +9,7 @@ function getDatabaseConfig(): array
                 "password" => ""
             ],
             "prod" => [
-                "url" => "mysql:host=localhost:3306;dbname=semada",
+                "url" => "mysql:host=localhost:3306;dbname=semada2",
                 "username" => "root",
                 "password" => ""
             ]

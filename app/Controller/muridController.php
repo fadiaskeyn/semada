@@ -77,7 +77,7 @@ public function getmurid()
     $muridModel = new murid_model($conn);
     $dataMurid = $muridModel->getMuridById($noinduk);
 
-    View::render('admin/murid/form_update_murid', [
+    View::render('admin/murid/data_murid', [
         "title" => 'Perbarui Data Murid',
         "dataMurid" => $dataMurid,
     ]);
@@ -95,6 +95,7 @@ public function getmurid()
             'gender' => $_POST['gender'],
             'nama' => $_POST['nama'],
             'kelas' => $_POST['kelas'],
+            'password' => $_POST['password'],
         ];
     
         // Panggil model untuk melakukan update

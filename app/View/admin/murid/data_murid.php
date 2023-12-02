@@ -116,7 +116,7 @@
               id="btnTambahSiswa"
               class="flex justify-center items-center bg-green-500 rounded-full text-white font-semibold h-10 w-48">
               <span class="text-3xl">+ 
-              <a href="./data_murid/tambah" class="text-xl hover:text-inherit">Tambah Siswa</a>
+              <a href="/admin/data_murid/tambah" class="text-xl hover:text-inherit">Tambah Siswa</a>
               </span>
             </button>
           </div> 
@@ -130,26 +130,45 @@
                 <div 
                   onclick="closeEdit()"
                   class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
-                  <h1>Edit Pelanggaran</h1>
+                  <h1>Edit Data Murid</h1>
                   <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
                 </div>
-                <form
-                  onclick="event.stopImmediatePropagation()"
-                >
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Jenis Pelanggaran</label>
-                    <input type="" name="" value="" class="w-96 border-2 border-green-500">
-                  </div>
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Keterangan</label>
-                    <textarea rows="3" cols="40" class="border-2 border-green-500">Terlambat</textarea>
-                  </div>
-                  <div class="flex justify-end p-4">
-                    <button
-                      onclick="submitEdit()"
-                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
-                  </div>
-                </form>
+                
+                <?php if (!empty($model["dataMurid"])): ?>
+    <form onclick="event.stopImmediatePropagation()" action="/admin/data_murid/edit" method="post">
+        <?php $dataMurid = $model["dataMurid"][0]; // Ambil data murid pertama ?>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">Absen</label>
+            <input type="" id="absen" name="absen" value="<?= isset($dataMurid['absen']) ? $dataMurid['absen'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">NIS</label>
+            <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">Gender</label>
+            <input type="" id="gender" name="gender" value="<?= isset($dataMurid['gender']) ? $dataMurid['gender'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">Nama</label>
+            <input type="" id="nama" name="nama" value="<?= isset($dataMurid['nama']) ? $dataMurid['nama'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">Kelas</label>
+            <input type="" id="kelas" name="kelas" value="<?= isset($dataMurid['kelas']) ? $dataMurid['kelas'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">Password</label>
+            <input type="password" id="password" name="password" value="<?= isset($dataMurid['password']) ? $dataMurid['password'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex justify-end p-4">
+            <button onclick="submitEdit()" type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+        </div>
+    </form>
+<?php endif; ?>
+
+
+
               </div>
             </div>
           <!-- modal tambahsiswa end -->
@@ -159,7 +178,7 @@
           </div>
           <div class="h-full w-full overflow-auto">
             <table class="py-12 w-full">
-              <thead class="border boreder-black sticky top-0 z-0">
+              <thead class="border boreder-black sticky top-0 z-50">
                 <tr class="text-center bg-gray-200 shadow">
                   <th class="w-[10%] border border-black ">Absen</th>
                   <th class="w-[10%] border border-black ">Nis</th>
@@ -257,25 +276,26 @@
                   <h1>Pilih Pelanggaran</h1>
                   <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
                 </div>
+                
                 <form
                   onclick="event.stopImmediatePropagation()"
                 >
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Jenis Pelanggaran</label>
-                    <input type="" name="" value="" class="w-96 border-2 border-green-500">
-                  </div>
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Keterangan</label>
-                    <textarea rows="3" cols="40" class="border-2 border-green-500">Terlambat</textarea>
-                  </div>
-                  <div class="flex justify-end p-4">
-                    <button
-                      onclick="submitMelanggar()"
-                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+                <div class="mb-3">
+            <select name="pilihlanggaran" id="pilihlanggaran" class="pilihlanggaran">
+    <optgroup>
+        <option value="Pilih Pelanggaran" selected disabled>Pilih Pelanggaran</option>
+        <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+            <option value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>"
+                data-id-pelanggaran="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>"
+                data-nilai-poin="<?= isset($dataPelanggaran['nilai_poin']) ? $dataPelanggaran['nilai_poin'] : '' ?>">
+                <?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>
+            </option>
+            
+        <?php endforeach; ?>
+    </optgroup>
+</select>
+
+        </div>
             <!-- end modal tombol Melanggar -->
           </div>
         </div>
@@ -285,5 +305,18 @@
     <script src="../../../../asset/js/modal.js"></script>
     <script src="../../../../asset/js/search.js"></script>
     <script src="../../../../asset/js/scripts.js"></script>
+
+
+     <!-- Show Edit Modal -->
+    <script> function showEdit(){
+  let show = document.getElementById('formEdit');
+  show.classList.remove('hidden');
+  show.classList.add('flex');
+  setTimeout(()=>{
+    show.classList.add('opacity-100');
+  },100);
+}
+
+</script>
   </body>
 </html>

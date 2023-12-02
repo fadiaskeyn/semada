@@ -15,7 +15,7 @@
           <span class="px-3 text-2xl font-semibold w-[200px]">SMA NEGERI 2 JEMBER </span>
         </div>
         <div class="flex w-64 h-20 items-center border-b-4 border-slate-500 rounded-[45px] bg-green-500 shadow-lg transition delay-100 hover:bg-green-700">
-          <a href="login.html" class="flex">
+          <a href="users/login" class="flex">
             <img src="../../../asset/assets/icon/user.png" alt="userProfil" class="w-14 mx-3 border rounded-full bg-white">
             <button type="submit" class="text-2xl font-semibold text-white px-3"> 
               Log In 

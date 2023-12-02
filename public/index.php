@@ -20,8 +20,8 @@ Router::add('GET', '/', HomeController::class, 'index',[]);
 
 //User Controller
 
-Router::add('GET', '/users/login', UserController::class, 'login',[]);
-Router::add('POST', '/users/login', UserController::class, 'postLogin',[]);
+Router::add('GET', '/users/login', UserController::class, 'loginuser',[]);
+Router::add('POST', '/users/login', UserController::class, 'loginuser',[]);
 
 //Murid Controller
 Router::add('GET', '/admin/data_murid', muridController::class, 'getmurid',[]);

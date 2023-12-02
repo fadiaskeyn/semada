@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../../../../asset/css/style.css" rel="stylesheet" />
   </head>
-
   <body>
     <div class="flex justify-center items-center h-screen bg-[#DDEEE0]">
       <!-- notifikasi berhasil -->

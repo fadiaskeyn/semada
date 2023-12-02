@@ -53,7 +53,7 @@ private \PDO $conn;
 public function getMuridById($noinduk)
 {
     try {
-        $query = "SELECT absen, noinduk, gender, nama, kelas FROM murids WHERE noinduk = :noinduk";
+        $query = "SELECT absen, noinduk, gender, nama, kelas, password FROM murids WHERE noinduk = :noinduk";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':noinduk', $noinduk);
         $stmt->execute();
@@ -75,7 +75,7 @@ public function getMuridById($noinduk)
     public function updateMurid($data)
     {
         try {
-            $query = "UPDATE murids SET absen = :absen, gender = :gender, nama = :nama, kelas = :kelas WHERE noinduk = :noinduk";
+            $query = "UPDATE murids SET absen = :absen, gender = :gender, nama = :nama, kelas = :kelas, password = :password WHERE noinduk = :noinduk";
             $stmt = $this->conn->prepare($query);
 
             if (!$stmt) {
@@ -87,6 +87,7 @@ public function getMuridById($noinduk)
             $stmt->bindParam(':gender', $data['gender']);
             $stmt->bindParam(':nama', $data['nama']);
             $stmt->bindParam(':kelas', $data['kelas']);
+            $stmt->bindParam(':password', $data['password']);
 
             $stmt->execute();
 
