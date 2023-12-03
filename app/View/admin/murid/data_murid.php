@@ -94,8 +94,10 @@
             class="rounded-lg text-center bg-green-100 w-96 h-36">
             <h1 class="p-4">Apakah anda yakin keluar ?</h1>
             <div class="flex justify-evenly mt-3">
-              <button type="" class="bg-green-500 text-white text-lg w-20 h-7 rounded-full shadow
+            <form action="/users/logout" method="GET">
+              <button type="submit" class="bg-green-500 text-white text-lg w-20 h-7 rounded-full shadow
                 hover:bg-green-600">Ya</button>
+            </form>
               <button 
                 onclick="exitLogout()"
                 type="" 
@@ -166,9 +168,6 @@
         </div>
     </form>
 <?php endif; ?>
-
-
-
               </div>
             </div>
           <!-- modal tambahsiswa end -->
@@ -208,39 +207,52 @@
               <?php endif; ?>
             </table>
             <!-- MODAL ACTION -->
-            <!-- start modal tombol edit -->
+            <!-- start modal tombol Tambah Pelanggaran -->
             <div 
-              onclick="closeEdit()"
-              id="formEdit"
-              class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
-              <div 
-                class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
-                <div 
-                  onclick="closeEdit()"
-                  class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
-                  <h1>Edit Pelanggaran</h1>
-                  <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
+    onclick="closeEdit()"
+    id="formEdit"
+    class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+    <div 
+        class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
+        <div 
+            onclick="closeEdit()"
+            class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+            <h1>Edit Pelanggaran</h1>
+            <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer" onclick="closeEdit()">X</span>
+        </div>
+        <?php if (!empty($model["dataPelanggaran"])): ?>
+            <form onclick="event.stopImmediatePropagation()" action="/some_action_endpoint" method="post">
+                <div class="flex p-4 mb-4">
+                    <select name="pilihlanggaran" id="pilihlanggaran" class="w-96 border-2 border-green-500">
+                        <optgroup>
+                            <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+                                <?php
+                                    $selected = ($dataPelanggaran['id_pelanggaran'] == $selectedValue) ? 'selected' : '';
+                                ?>
+                                <option value="<?= $dataPelanggaran['id_pelanggaran'] ?>" <?= $selected ?>
+                                    data-id-pelanggaran="<?= $dataPelanggaran['id_pelanggaran'] ?>"
+                                    data-nilai-poin="<?= $dataPelanggaran['nilai_poin'] ?>">
+                                    <?= $dataPelanggaran['nama'] ?>
+                                </option>
+                            <?php endforeach ?>
+                        </optgroup>
+                    </select>
                 </div>
-                <form
-                  onclick="event.stopImmediatePropagation()"
-                >
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Jenis Pelanggaran</label>
-                    <input type="" name="" value="" class="w-96 border-2 border-green-500">
-                  </div>
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Keterangan</label>
-                    <textarea rows="3" cols="40" class="border-2 border-green-500">Terlambat</textarea>
-                  </div>
-                  <div class="flex justify-end p-4">
-                    <button
-                      onclick="submitEdit()"
-                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- end modal tombol edit -->
+                <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Catatan untuk Murid: </label>
+                    <textarea rows="3" cols="40" class="border-2 border-green-500" name="catatanMurid"></textarea>
+                </div>
+                <div class="flex justify-end p-4">
+                    <button type="button" onclick="submitEdit()" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                </div>
+            </form>
+        <?php endif; ?>
+    </div>
+</div>
+
+            <!-- end modal tambah pelanggaran -->
+
+
             <!-- start modal tombol hapus-->
             <div 
               onclick="hideBtnHapus()"
@@ -254,7 +266,7 @@
                 <div class="flex my-12 justify-evenly items-center">
                   <button type="" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">
                     <!-- TODO DELETE -->
-                    <a href="./data_murid/hapus">Ya</a>
+                    <a href="/admin/data_murid/hapus/<?= $murid['noinduk'] ?>">Ya</a>
                     </button>
                   <button 
                     onclick="hideBtnHapus()"
@@ -262,7 +274,26 @@
                 </div>
               </div>
             </div>
+            <script>
+        // Store the initial pelanggaran data
+        var initialPelanggaranData = <?= json_encode($model["dataPelanggaran"]) ?>;
+
+        // Add an event listener to the dropdown
+        document.getElementById('pilihlanggaran').addEventListener('change', function () {
+            // Get the selected option
+            var selectedOption = this.options[this.selectedIndex];
+
+            // Update the label with style="display:none" value from the selected option
+            document.getElementById('nilaiPoinLabel').innerText = selectedOption.getAttribute('data-nilai-poin');
+
+            // Update the value of no_pelanggaran
+            document.getElementById('no_pelanggaran').value = selectedOption.getAttribute('data-id-pelanggaran');
+        });
+    </script>
             <!-- end modal tombol hapus-->
+
+
+
             <!-- start modal tombol Melanggar -->
             <div 
               onclick="closeMelanggar()"
@@ -276,27 +307,56 @@
                   <h1>Pilih Pelanggaran</h1>
                   <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
                 </div>
-                
                 <form
                   onclick="event.stopImmediatePropagation()"
                 >
                 <div class="mb-3">
-            <select name="pilihlanggaran" id="pilihlanggaran" class="pilihlanggaran">
-    <optgroup>
-        <option value="Pilih Pelanggaran" selected disabled>Pilih Pelanggaran</option>
-        <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
-            <option value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>"
-                data-id-pelanggaran="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>"
-                data-nilai-poin="<?= isset($dataPelanggaran['nilai_poin']) ? $dataPelanggaran['nilai_poin'] : '' ?>">
-                <?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>
-            </option>
-            
-        <?php endforeach; ?>
-    </optgroup>
-</select>
+                  
+                
+                <?php if (!empty($model["noinduk"])): ?>
+<?php if (!empty($model["dataPelanggaran"])): ?>
+    <select name="pilihlanggaran" id="pilihlanggaran" class="pilihlanggaran">
+        <optgroup>
+            <option value="Pilih Pelanggaran" selected disabled>Pilih Pelanggaran</option>
+            <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+                <?php
+                $selected = ($dataPelanggaran['id_pelanggaran'] == $model["noinduk"]) ? 'selected' : '';
+                ?>
+                <option value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>"
+                    data-id-pelanggaran="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>"
+                    data-nilai-poin="<?= isset($dataPelanggaran['nilai_poin']) ? $dataPelanggaran['nilai_poin'] : '' ?>"
+                    <?= $selected ?>>
+                    <?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>
+                </option>
+            <?php endforeach; ?>
+        </optgroup>
+    </select>
+<?php endif; ?>
+<?php endif; ?>
 
+
+
+<div class="mb-3">
+            <label for="pwd" id="nilaiPoinLabel" class="form-label">
+                <?= isset($model["dataPelanggaran"]['nilai_poin']) ? $model["dataPelanggaran"]['nilai_poin'] : '' ?>
+            </label>
         </div>
+
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">NIS</label>
+            <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
+        </div>
+        <div class="flex p-4 mb-4">
+            <label for="" class="w-36 inline-block">ID Pelanggaran</label>
+            <input type="" id="noinduk" name="noinduk" value="" class="w-96 border-2 border-green-500">
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
             <!-- end modal tombol Melanggar -->
+
+
+
           </div>
         </div>
         <!-- END CONTENT -->

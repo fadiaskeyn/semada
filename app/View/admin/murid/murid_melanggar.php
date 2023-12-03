@@ -35,5 +35,22 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
+    <script>
+        // Store the initial pelanggaran data
+        var initialPelanggaranData = <?= json_encode($model["dataPelanggaran"]) ?>;
+
+        // Add an event listener to the dropdown
+        document.getElementById('pilihlanggaran').addEventListener('change', function () {
+            // Get the selected option
+            var selectedOption = this.options[this.selectedIndex];
+
+            // Update the label with style="display:none" value from the selected option
+            document.getElementById('nilaiPoinLabel').innerText = selectedOption.getAttribute('data-nilai-poin');
+
+            // Update the value of no_pelanggaran
+            document.getElementById('no_pelanggaran').value = selectedOption.getAttribute('data-id-pelanggaran');
+        });
+    </script>
+
 <?php endif ?>
 <?php endif ?>

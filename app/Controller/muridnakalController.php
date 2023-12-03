@@ -37,10 +37,11 @@ public function getmuridnakal()
         $conn = Database::getConnection();
         $muridnakalModel = new muridnakal_model($conn);
         $dataPelanggaran = $muridnakalModel->getDaftarPelanggaran(); 
-        View::render('admin/murid/murid_melanggar', [
+        // var_dump($dataPelanggaran);
+        View::render('admin/murid/data_murid', [
             "title" => 'Tambah Murid yang Melanggar',
             "dataPelanggaran" => $dataPelanggaran,
-            "noinduk" => $noinduk,
+            "noinduk" => $noinduk
         ]);
     }
     

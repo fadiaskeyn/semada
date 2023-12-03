@@ -22,6 +22,8 @@ Router::add('GET', '/', HomeController::class, 'index',[]);
 
 Router::add('GET', '/users/login', UserController::class, 'loginuser',[]);
 Router::add('POST', '/users/login', UserController::class, 'loginuser',[]);
+Router::add('GET', '/users/logout', UserController::class, 'logout', []);
+
 
 //Murid Controller
 Router::add('GET', '/admin/data_murid', muridController::class, 'getmurid',[]);

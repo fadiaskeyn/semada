@@ -65,9 +65,11 @@ public function getmurid()
     
             // Mengecek hasil eksekusi
             if ($data > 0) {
-                echo "Data berhasil ditambahkan!";
+                echo "<script>alert('Data Berhasil Tambahkan'); window.location.href='/admin/data_murid';</script>";
+            exit;
             } else {
-                echo "Gagal menambahkan data.";
+                echo "<script>alert('Data Gagal Dihapus'); window.location.href='/admin/data_murid';</script>";
+                exit;
             }
         
     }
@@ -119,11 +121,14 @@ public function getmurid()
     
         // Tampilkan pesan berhasil atau gagal
         if ($result > 0) {
-            echo "Data murid berhasil dihapus.";
+            echo "<script>alert('Data Berhasil Dihapus'); window.location.href='/admin/data_murid';</script>";
+            exit;
         } else {
             echo "Gagal menghapus data murid.";
         }
     }
+    
+    
     
     
 

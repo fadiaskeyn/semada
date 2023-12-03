@@ -14,7 +14,7 @@ private \PDO $conn;
     public function tampilkanguru()
     {
         try {
-            $query = "SELECT noinduk, nama, jabatan, alamat, gender FROM guru";
+            $query = "SELECT noinduk, nama, jabatan, alamat, gender FROM staff where role='guru'";
             $statement = $this->conn->query($query);
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -25,7 +25,7 @@ private \PDO $conn;
     
   
     public function tambah($data) {
-        $query = "INSERT INTO guru (noinduk, nama, jabatan, alamat, gender, password) 
+        $query = "INSERT INTO staff (noinduk, nama, jabatan, alamat, gender, password) 
                   VALUES (:noinduk, :nama, :jabatan, :alamat, :gender, :password)";
         $stmt = $this->conn->prepare($query);
     
