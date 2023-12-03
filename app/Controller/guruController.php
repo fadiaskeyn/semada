@@ -41,6 +41,13 @@ public function getguru()
         ]);
     }
 
+    public function dashboardguru()
+    {
+        View::render('admin/guru/dashboard_guru',[
+            "title" => 'Form Tambah Guru'
+        ]);
+    }
+
     public function tambahguru()
     {
             // // Inisialisasi koneksi database

@@ -12,21 +12,20 @@ use dfdiag\Belajar\PHP\MVC\Model\UserModel;
 use dfdiag\Belajar\PHP\MVC\Model\UserRegisterRequest;
 use dfdiag\Belajar\PHP\MVC\Repository\UserRepository;
 use dfdiag\Belajar\PHP\MVC\Service\UserService;
-
 class UserController
 {
-    public function loginuser()
+    public function showLoginForm()
+    {
+        // Menampilkan formulir login
+        View::render('user/login', [
+            "title" => 'Login',
+        ]);
+    }
+
+    public function loginUser()
     {
         try {
-            $conn = Database::getConnection();
-            $userModel = new UserModel($conn);
-
-            // Perbaiki path tampilan agar sesuai dengan struktur folder
-            View::render('user/login', [
-                "title" => 'Login',
-                "dataPelanggaran" => $dataPelanggaran
-            ]);
-
+            // Validasi dan penanganan login
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (empty($_POST['noinduk']) || empty($_POST['password'])) {
                     throw new ValidationException("Noinduk dan Password harus diisi.");
@@ -35,17 +34,20 @@ class UserController
                 $noinduk = $_POST['noinduk'];
                 $password = $_POST['password'];
 
+                $conn = Database::getConnection();
+                $userModel = new UserModel($conn);
                 $userData = $userModel->login($noinduk, $password);
 
                 if ($userData) {
                     session_start();
                     $_SESSION['status_login'] = true;
                     $_SESSION['noinduk'] = $userData['noinduk'];
-                    $_SESSION['password'] = $userData['password'];
                     $_SESSION['role'] = $userData['role'];
 
-                    if ($userData['role'] == 'admin' || $userData['role'] == 'guru') {
-                        View::redirect("/admin/data_murid");
+                    if ($userData['role'] == 'admin') {
+                        View::redirect("/admin/data_guru");
+                    }elseif($userData['role'] == 'guru'){
+                        View::redirect("/guru/dashboard");
                     }
                 } else {
                     throw new ValidationException("Noinduk atau Password salah.");
@@ -54,6 +56,7 @@ class UserController
         } catch (ValidationException $ve) {
             // Tangani kesalahan jika terjadi
             View::render("user/login", ["error" => $ve->getMessage()]);
+            
         }
     }
 }

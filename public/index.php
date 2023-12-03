@@ -11,7 +11,11 @@ use dfdiag\Belajar\PHP\MVC\Controller\muridController;
 use dfdiag\Belajar\PHP\MVC\Controller\pelanggaranController;
 use dfdiag\Belajar\PHP\MVC\Controller\guruController;
 use dfdiag\Belajar\PHP\MVC\Controller\API_Controller;
+use dfdiag\Belajar\PHP\MVC\Controller\AbsenController;
 use dfdiag\Belajar\PHP\MVC\Controller\muridnakalController;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
+use Kreait\Firebase\Storage;
 
 //Database env prod or test
 Database::getConnection('prod');
@@ -20,12 +24,13 @@ Router::add('GET', '/', HomeController::class, 'index',[]);
 
 //User Controller
 
-Router::add('GET', '/users/login', UserController::class, 'loginuser',[]);
+Router::add('GET', '/users/login', UserController::class, 'showLoginForm',[]);
 Router::add('POST', '/users/login', UserController::class, 'loginuser',[]);
 Router::add('GET', '/users/logout', UserController::class, 'logout', []);
 
 
 //Murid Controller
+Router::add('GET', '/admin/absensi_murid', muridController::class, 'absensimurid',[]);
 Router::add('GET', '/admin/data_murid', muridController::class, 'getmurid',[]);
 Router::add('GET', '/admin/data_murid/tambah', muridController::class, 'formtambahmurid',[]);
 Router::add('POST', '/admin/tambahmurid', muridController::class, 'tambahmurid',[]);
@@ -36,6 +41,7 @@ Router::add('POST', '/admin/data_murid/melanggar', muridnakalController::class, 
 Router::add('GET', '/admin/data_murid/melanggar/([0-9a-zA-Z]*)', muridnakalController::class, 'formmelanggar');
 
 //Guru Controller
+Router::add('GET', '/guru/dashboard', guruController::class, 'dashboardguru',[]);
 Router::add('GET', '/admin/data_guru', guruController::class, 'getguru',[]);
 Router::add('GET', '/admin/data_guru/tambah', guruController::class, 'formtambahguru',[]);
 Router::add('POST', '/admin/tambahguru', guruController::class, 'tambahguru',[]);
@@ -58,6 +64,9 @@ Router::add('GET', '/admin/murid_nakal/hapus/([0-9a-zA-Z]*)', muridnakalControll
 //API
 Router::add('POST', '/API/murid_login', API_Controller::class, 'apilogin', []);
 // Router::add('GET', '/API/murid_login', API_Controller::class, 'getMurid',[]);
+
+//Absensi Controller
+Router::add('GET', '/admin/absensi_murid', AbsenController::class, 'showAbsensi',[]);
 
 
 Router::run();

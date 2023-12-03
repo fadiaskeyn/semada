@@ -128,7 +128,12 @@ public function getmurid()
         }
     }
     
-    
+    public function absensimurid()
+    {
+        View::render('admin/absen/absen_murid',[
+            "title" => 'Form Tambah Data Murid'
+        ]);
+    }
     
     
 

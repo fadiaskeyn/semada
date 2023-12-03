@@ -208,47 +208,46 @@
             </table>
             <!-- MODAL ACTION -->
             <!-- start modal tombol Tambah Pelanggaran -->
-            <div 
-    onclick="closeEdit()"
-    id="formEdit"
-    class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
-    <div 
-        class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
-        <div 
-            onclick="closeEdit()"
-            class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
-            <h1>Edit Pelanggaran</h1>
-            <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer" onclick="closeEdit()">X</span>
-        </div>
-        <?php if (!empty($model["dataPelanggaran"])): ?>
-            <form onclick="event.stopImmediatePropagation()" action="/some_action_endpoint" method="post">
-                <div class="flex p-4 mb-4">
-                    <select name="pilihlanggaran" id="pilihlanggaran" class="w-96 border-2 border-green-500">
-                        <optgroup>
-                            <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
-                                <?php
-                                    $selected = ($dataPelanggaran['id_pelanggaran'] == $selectedValue) ? 'selected' : '';
-                                ?>
-                                <option value="<?= $dataPelanggaran['id_pelanggaran'] ?>" <?= $selected ?>
-                                    data-id-pelanggaran="<?= $dataPelanggaran['id_pelanggaran'] ?>"
-                                    data-nilai-poin="<?= $dataPelanggaran['nilai_poin'] ?>">
-                                    <?= $dataPelanggaran['nama'] ?>
-                                </option>
-                            <?php endforeach ?>
-                        </optgroup>
-                    </select>
-                </div>
-                <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Catatan untuk Murid: </label>
-                    <textarea rows="3" cols="40" class="border-2 border-green-500" name="catatanMurid"></textarea>
-                </div>
-                <div class="flex justify-end p-4">
-                    <button type="button" onclick="submitEdit()" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
-                </div>
-            </form>
-        <?php endif; ?>
-    </div>
-</div>
+              <div 
+      onclick="closeEdit()"
+      id="formEdit"
+      class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+      <div 
+          class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
+          <div 
+              onclick="closeEdit()"
+              class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+              <h1>Edit Pelanggaran</h1>
+              <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer" onclick="closeEdit()">X</span>
+          </div>
+          
+              <form onclick="event.stopImmediatePropagation()" action="/some_action_endpoint" method="post">
+              <?php if (!empty($model["dataPelanggaran"])): ?>
+                  <div class="flex p-4 mb-4">
+                      <select name="pilihlanggaran" id="pilihlanggaran" class="w-96 border-2 border-green-500">
+                          <optgroup>
+                              <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+                                
+                                  <option value="<?= $dataPelanggaran['id_pelanggaran'] ?>" <?= $selected ?>
+                                      data-id-pelanggaran="<?= $dataPelanggaran['id_pelanggaran'] ?>"
+                                      data-nilai-poin="<?= $dataPelanggaran['nilai_poin'] ?>">
+                                      <?= $dataPelanggaran['nama'] ?>
+                                  </option>
+                              <?php endforeach ?>
+                          </optgroup>
+                      </select>
+                  </div>
+                  <div class="flex p-4 mb-4">
+                      <label for="" class="w-36 inline-block">Catatan untuk Murid: </label>
+                      <textarea rows="3" cols="40" class="border-2 border-green-500" name="catatanMurid"></textarea>
+                  </div>
+                  <div class="flex justify-end p-4">
+                      <button type="button" onclick="submitEdit()" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                  </div>
+              </form>
+          <?php endif; ?>
+      </div>
+  </div>
 
             <!-- end modal tambah pelanggaran -->
 

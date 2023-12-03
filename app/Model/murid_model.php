@@ -4,6 +4,7 @@ namespace dfdiag\Belajar\PHP\MVC\Model;
 use PDO; 
 use PDOException; 
 
+
 class murid_model{
    
 private \PDO $conn;
