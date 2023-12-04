@@ -30,7 +30,6 @@
           </div>
         </div>
       </div>
-      </div>
     </nav>
     <!-- end navbar -->
     <div class="flex flex-row h-screen">
@@ -39,38 +38,47 @@
         <div class="flex flex-col justify-between bg-white m-7 w-96 h-full rounded-lg text-xl p-4 overflow-auto">
           <div>
             <ul>
-              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow 
+              <li
+                class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow 
                 hover:bg-green-500 hover:text-white">
-                <a href="dashboard.html" class="ml-4 w-full inline-block">Dashboard</a>
+                <a 
+                  onclick="alert(':( Sorry We have trouble')"
+                  href="" class="ml-4 w-full inline-block">Dashboard</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="data_siswa.html" class="ml-4 w-full inline-block">Data Murid</a>
+                <a href="./../../admin/data_murid" class="ml-4 w-full inline-block">Data Murid</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="pelanggaran_siswa.html" class="ml-4 w-full inline-block">Pelanggaran</a>
+                <a href="./../pelanggaran" class="ml-4 w-full inline-block">Pelanggaran</a>
               </li>
               <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 flex items-center shadow
                 hover:bg-green-500 hover:text-gray-200"">
-                <a href="absen_murid.html" class="ml-4 w-full inline-block">Absen Murid</a>
+                <a href="" class="ml-4 w-full inline-block">Absen Murid</a>
                 <img src="../../../../asset/assets/icon/Polygon.png" alt="activity" class="mr-4 w-4 h-4">
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="permohonan_izin.html" class="ml-4 w-full inline-block">Permohonan Izin Murid</a>
+                <a 
+                  onclick="alert(':( Sorry we have trouble')"
+                  href="" class="ml-4 w-full inline-block">Permohonan Izin Murid</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="rekap_pelanggar.html" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
+                <a href="../murid_nakal/daftar_murid_nakal" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="rekap_absen.html" class="ml-4 w-full inline-block">Rekap Absen</a>
+                <a 
+                  onclick="alert(':( Sorry we have trouble')"
+                  href="" class="ml-4 w-full inline-block">Rekap Absen</a>
               </li>
-              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
+              <li 
+                onclick="alert(':( Sorry we have trouble')"
+                class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="profile.html" class="ml-4 w-full inline-block">Profile</a>
+                <a href="" class="ml-4 w-full inline-block">Profile</a>
               </li>
             </ul>
           </div>
@@ -88,7 +96,7 @@
         <div 
           onclick="exitLogout()"
           id="modalLogout"
-          class="fixed bg-black w-screen h-screen bg-opacity-30 top-0 left-0 
+          class="fixed bg-black w-screen h-screen bg-opacity-50 top-0 left-0 
           justify-center items-center opacity-0 hidden transition-opacity duration-200 backdrop-blur-sm shadow">
           <div 
             onclick="event.stopImmediatePropagation()"
@@ -114,10 +122,12 @@
         <div class="flex flex-col h-full w-full p-24">
           <div class="w-full h-16 flex justify-end items-center">
             <label for="" class="font-semibold text-xl">cari</label>
-            <input type="text" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+            <input id="searchInput" type="search" name="" value="" class="border-2 border-black w-64 h-1/2 ml-4 px-2">
+
           </div>
           <div class="h-full w-full overflow-auto">
-              <table class="my-8 py-12 w-full">
+            <table class="py-12 w-full">
+              <thead id="tableHeader" class="sticky top-0 z-0">
                 <tr class="text-center">
                   <th class="border border-black">Absen</th>
                   <th class="border border-black">Nama</th>
@@ -125,17 +135,20 @@
                   <th class="border border-black">Keterangan</th>
                   <th class="border border-black">Bukti Hadir</th>
                 </tr>
-                <tr class="text-center">
-      <td name = "absen" class="border border-black">1</td>
-      <td name = "nama" class="border border-black">Rahmatullah</td>
-      <td name = "kelas" class="border border-black">XI MIPA 2</td>
-      <td name = "status" class="text-green-500 font-bold border border-black">Masuk</td>
-      <td name="bukti" class="border border-black">
-          <!-- Tambahkan elemen img untuk menampilkan gambar -->
-          <img src="<?php echo $filename; ?>" alt="Bukti Hadir" class="w-24 h-24">
-      </td>
-  </tr>
-              </table>
+              </thead>
+              <tbody>
+                <tr class="text-center table-row">
+                  <td name = "absen" class="border border-black">1</td>
+                  <td name = "nama" class="border border-black">Rahmatullah</td>
+                  <td name = "kelas" class="border border-black">XI MIPA 2</td>
+                  <td name = "status" class="text-green-500 font-bold border border-black">Masuk</td>
+                  <td name="bukti" class="border border-black">
+                    <!-- Tambahkan elemen img untuk menampilkan gambar -->
+                    <img src="<?php echo $filename; ?>" alt="Bukti Hadir" class="w-24 h-24">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <!-- start modal tombol hapus-->
             <div 
               onclick="hideBtnHapus()"
@@ -235,6 +248,8 @@
         <!-- END CONTENT -->
       </div>
     </div>
-    <script src="js/modal.js"></script>
+    <script src="../../../../asset/js/modal.js"></script>
+    <script src="../../../../asset/js/search.js"></script>
+    <script src="../../../../asset/js/scripts.js"></script>
   </body>
 </html>

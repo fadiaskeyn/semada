@@ -10,11 +10,12 @@
     <!-- start navbar -->
     <nav class="bg-white shadow-md">
       <div class="max-w-screen px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-90 items-center justify-between">
+        <div class="relative flex h-20 items-center justify-between">
           <div class="flex flex-1 items-stretch justify-start">
             <div class="flex items-center">
               <img class="w-14" src="../../../../asset/assets/icon/logosmada.png" alt="logo smada" />
             </div>
+            <div class="hidden sm:ml-6 sm:block"></div>
           </div>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div class="relative ml-3 justify-end">
@@ -29,7 +30,6 @@
           </div>
         </div>
       </div>
-      </div>
     </nav>
     <!-- end navbar -->
     <div class="flex flex-row h-screen">
@@ -40,7 +40,9 @@
             <ul>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow 
                 hover:bg-green-500 hover:text-white">
-                <a href="dashboard.html" class="ml-4 w-full inline-block">Dashboard</a>
+                <a 
+                  onclick="alert(':( Sorry we have trouble')"
+                  href="" class="ml-4 w-full inline-block">Dashboard</a>
               </li>
               <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-gray-200">
@@ -48,27 +50,33 @@
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="pelanggaran_siswa.html" class="ml-4 w-full inline-block">Pelanggaran</a>
+                <a href="./pelanggaran" class="ml-4 w-full inline-block">Pelanggaran</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 flex items-center shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="absen_murid.html" class="ml-4 w-full inline-block">Absen Murid</a>
+                <a href="./absen/absen_murid" class="ml-4 w-full inline-block">Absen Murid</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="permohonan_izin.html" class="ml-4 w-full inline-block">Permohonan Izin Murid</a>
+                <a 
+                  onclick="alert(':( Sorry we have trouble')"
+                  href="" class="ml-4 w-full inline-block">Permohonan Izin Murid</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="rekap_pelanggar.html" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
+                <a href="./murid_nakal/daftar_murid_nakal" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
               </li>
-              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
+              <li 
+                onclick="alert(':( Sorry we have trouble')"
+                class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="rekap_absen.html" class="ml-4 w-full inline-block">Rekap Absen</a>
+                <a href="" class="ml-4 w-full inline-block">Rekap Absen</a>
               </li>
-              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
+              <li 
+                onclick="alert(':( Sorry we have trouble')"
+                class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="profile.html" class="ml-4 w-full inline-block">Profile</a>
+                <a href="" class="ml-4 w-full inline-block">Profile</a>
               </li>
             </ul>
           </div>
@@ -94,10 +102,10 @@
             class="rounded-lg text-center bg-green-100 w-96 h-36">
             <h1 class="p-4">Apakah anda yakin keluar ?</h1>
             <div class="flex justify-evenly mt-3">
-            <form action="/users/logout" method="GET">
-              <button type="submit" class="bg-green-500 text-white text-lg w-20 h-7 rounded-full shadow
-                hover:bg-green-600">Ya</button>
-            </form>
+              <form action="/users/logout" method="GET">
+                <button type="submit" class="bg-green-500 text-white text-lg w-20 h-7 rounded-full shadow
+                  hover:bg-green-600">Ya</button>
+              </form>
               <button 
                 onclick="exitLogout()"
                 type="" 
@@ -105,71 +113,71 @@
             </div>
           </div>
         </div>
-
+        <!-- /End Sidebar -->
       </div>
       <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full overflow-hidden">
         <!-- START CONTENT -->
         <div class="flex justify-center items-center bg-[#575757] text-center font-bold text-white text-2xl">
           <h1 class="p-4">Data Murid</h1>
-            </div>
-            <div class="flex flex-col h-full w-full p-5">
+        </div>
+        <div class="flex flex-col h-full w-full p-5">
           <div>
             <button 
               id="btnTambahSiswa"
               class="flex justify-center items-center bg-green-500 rounded-full text-white font-semibold h-10 w-48">
               <span class="text-3xl">+ 
-              <a href="/admin/data_murid/tambah" class="text-xl hover:text-inherit">Tambah Siswa</a>
+                <a href="/admin/data_murid/tambah" class="text-xl hover:text-inherit">Tambah Siswa</a>
               </span>
             </button>
           </div> 
           <!-- modal tambahsiswa start -->
           <div 
-              onclick="closeEdit()"
-              id="formEdit"
-              class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+            onclick="closeEdit()"
+            id="formEdit"
+            class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+            <div 
+              class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
               <div 
-                class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
-                <div 
-                  onclick="closeEdit()"
-                  class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
-                  <h1>Edit Data Murid</h1>
-                  <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
-                </div>
-                
-                <?php if (!empty($model["dataMurid"])): ?>
-    <form onclick="event.stopImmediatePropagation()" action="/admin/data_murid/edit" method="post">
-        <?php $dataMurid = $model["dataMurid"][0]; // Ambil data murid pertama ?>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">Absen</label>
-            <input type="" id="absen" name="absen" value="<?= isset($dataMurid['absen']) ? $dataMurid['absen'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">NIS</label>
-            <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">Gender</label>
-            <input type="" id="gender" name="gender" value="<?= isset($dataMurid['gender']) ? $dataMurid['gender'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">Nama</label>
-            <input type="" id="nama" name="nama" value="<?= isset($dataMurid['nama']) ? $dataMurid['nama'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">Kelas</label>
-            <input type="" id="kelas" name="kelas" value="<?= isset($dataMurid['kelas']) ? $dataMurid['kelas'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">Password</label>
-            <input type="password" id="password" name="password" value="<?= isset($dataMurid['password']) ? $dataMurid['password'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex justify-end p-4">
-            <button onclick="submitEdit()" type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
-        </div>
-    </form>
-<?php endif; ?>
+                onclick="closeEdit()"
+                class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+                <h1>Edit Data Murid</h1>
+                <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
               </div>
+
+              <?php if (!empty($model["dataMurid"])): ?>
+              <form onclick="event.stopImmediatePropagation()" action="/admin/data_murid/edit" method="post">
+                <?php $dataMurid = $model["dataMurid"][0]; // Ambil data murid pertama ?>
+                <div class="flex p-4 mb-4">
+                  <label for="" class="w-36 inline-block">Absen</label>
+                  <input type="" id="absen" name="absen" value="<?= isset($dataMurid['absen']) ? $dataMurid['absen'] : '' ?>" class="w-96 border-2 border-green-500">
+                </div>
+                <div class="flex p-4 mb-4">
+                  <label for="" class="w-36 inline-block">NIS</label>
+                  <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
+                </div>
+                <div class="flex p-4 mb-4">
+                  <label for="" class="w-36 inline-block">Gender</label>
+                  <input type="" id="gender" name="gender" value="<?= isset($dataMurid['gender']) ? $dataMurid['gender'] : '' ?>" class="w-96 border-2 border-green-500">
+                </div>
+                <div class="flex p-4 mb-4">
+                  <label for="" class="w-36 inline-block">Nama</label>
+                  <input type="" id="nama" name="nama" value="<?= isset($dataMurid['nama']) ? $dataMurid['nama'] : '' ?>" class="w-96 border-2 border-green-500">
+                </div>
+                <div class="flex p-4 mb-4">
+                  <label for="" class="w-36 inline-block">Kelas</label>
+                  <input type="" id="kelas" name="kelas" value="<?= isset($dataMurid['kelas']) ? $dataMurid['kelas'] : '' ?>" class="w-96 border-2 border-green-500">
+                </div>
+                <div class="flex p-4 mb-4">
+                  <label for="" class="w-36 inline-block">Password</label>
+                  <input type="password" id="password" name="password" value="<?= isset($dataMurid['password']) ? $dataMurid['password'] : '' ?>" class="w-96 border-2 border-green-500">
+                </div>
+                <div class="flex justify-end p-4">
+                  <button onclick="submitEdit()" type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                </div>
+              </form>
+              <?php endif; ?>
             </div>
+          </div>
           <!-- modal tambahsiswa end -->
           <div class="w-full h-16 flex justify-end items-center">
             <label for="" class="font-semibold text-xl">Cari</label>
@@ -177,7 +185,9 @@
           </div>
           <div class="h-full w-full overflow-auto">
             <table class="py-12 w-full">
-              <thead class="border boreder-black sticky top-0 z-50">
+              <thead 
+                id="tableHeader"
+                class="border boreder-black sticky top-0 z-50">
                 <tr class="text-center bg-gray-200 shadow">
                   <th class="w-[10%] border border-black ">Absen</th>
                   <th class="w-[10%] border border-black ">Nis</th>
@@ -208,46 +218,46 @@
             </table>
             <!-- MODAL ACTION -->
             <!-- start modal tombol Tambah Pelanggaran -->
-              <div 
-      onclick="closeEdit()"
-      id="formEdit"
-      class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
-      <div 
-          class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
-          <div 
+            <div 
               onclick="closeEdit()"
-              class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
-              <h1>Edit Pelanggaran</h1>
-              <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer" onclick="closeEdit()">X</span>
-          </div>
-          
-              <form onclick="event.stopImmediatePropagation()" action="/some_action_endpoint" method="post">
-              <?php if (!empty($model["dataPelanggaran"])): ?>
+              id="formEdit"
+              class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+              <div 
+                class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
+                <div 
+                  onclick="closeEdit()"
+                  class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+                  <h1>Edit Pelanggaran</h1>
+                  <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer" onclick="closeEdit()">X</span>
+                </div>
+
+                <form onclick="event.stopImmediatePropagation()" action="/some_action_endpoint" method="post">
+                  <?php if (!empty($model["dataPelanggaran"])): ?>
                   <div class="flex p-4 mb-4">
-                      <select name="pilihlanggaran" id="pilihlanggaran" class="w-96 border-2 border-green-500">
-                          <optgroup>
-                              <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
-                                
-                                  <option value="<?= $dataPelanggaran['id_pelanggaran'] ?>" <?= $selected ?>
-                                      data-id-pelanggaran="<?= $dataPelanggaran['id_pelanggaran'] ?>"
-                                      data-nilai-poin="<?= $dataPelanggaran['nilai_poin'] ?>">
-                                      <?= $dataPelanggaran['nama'] ?>
-                                  </option>
-                              <?php endforeach ?>
-                          </optgroup>
-                      </select>
+                    <select name="pilihlanggaran" id="pilihlanggaran" class="w-96 border-2 border-green-500">
+                      <optgroup>
+                        <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+
+                        <option value="<?= $dataPelanggaran['id_pelanggaran'] ?>" <?= $selected ?>
+                          data-id-pelanggaran="<?= $dataPelanggaran['id_pelanggaran'] ?>"
+                          data-nilai-poin="<?= $dataPelanggaran['nilai_poin'] ?>">
+                          <?= $dataPelanggaran['nama'] ?>
+                        </option>
+                        <?php endforeach ?>
+                      </optgroup>
+                    </select>
                   </div>
                   <div class="flex p-4 mb-4">
-                      <label for="" class="w-36 inline-block">Catatan untuk Murid: </label>
-                      <textarea rows="3" cols="40" class="border-2 border-green-500" name="catatanMurid"></textarea>
+                    <label for="" class="w-36 inline-block">Catatan untuk Murid: </label>
+                    <textarea rows="3" cols="40" class="border-2 border-green-500" name="catatanMurid"></textarea>
                   </div>
                   <div class="flex justify-end p-4">
-                      <button type="button" onclick="submitEdit()" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                    <button type="button" onclick="submitEdit()" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
                   </div>
-              </form>
-          <?php endif; ?>
-      </div>
-  </div>
+                </form>
+                <?php endif; ?>
+              </div>
+            </div>
 
             <!-- end modal tambah pelanggaran -->
 
@@ -266,7 +276,7 @@
                   <button type="" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">
                     <!-- TODO DELETE -->
                     <a href="/admin/data_murid/hapus/<?= $murid['noinduk'] ?>">Ya</a>
-                    </button>
+                  </button>
                   <button 
                     onclick="hideBtnHapus()"
                     type="" class="bg-green-500 w-20 rounded-full text-white text-lg hover:bg-green-600">Tidak</button>
@@ -274,21 +284,21 @@
               </div>
             </div>
             <script>
-        // Store the initial pelanggaran data
-        var initialPelanggaranData = <?= json_encode($model["dataPelanggaran"]) ?>;
+            // Store the initial pelanggaran data
+            var initialPelanggaranData = <?= json_encode($model["dataPelanggaran"]) ?>;
 
-        // Add an event listener to the dropdown
-        document.getElementById('pilihlanggaran').addEventListener('change', function () {
-            // Get the selected option
-            var selectedOption = this.options[this.selectedIndex];
+            // Add an event listener to the dropdown
+            document.getElementById('pilihlanggaran').addEventListener('change', function () {
+              // Get the selected option
+              var selectedOption = this.options[this.selectedIndex];
 
-            // Update the label with style="display:none" value from the selected option
-            document.getElementById('nilaiPoinLabel').innerText = selectedOption.getAttribute('data-nilai-poin');
+              // Update the label with style="display:none" value from the selected option
+              document.getElementById('nilaiPoinLabel').innerText = selectedOption.getAttribute('data-nilai-poin');
 
-            // Update the value of no_pelanggaran
-            document.getElementById('no_pelanggaran').value = selectedOption.getAttribute('data-id-pelanggaran');
-        });
-    </script>
+              // Update the value of no_pelanggaran
+              document.getElementById('no_pelanggaran').value = selectedOption.getAttribute('data-id-pelanggaran');
+            });
+            </script>
             <!-- end modal tombol hapus-->
 
 
@@ -309,73 +319,60 @@
                 <form
                   onclick="event.stopImmediatePropagation()"
                 >
-                <div class="mb-3">
-                  
-                
-                <?php if (!empty($model["noinduk"])): ?>
-<?php if (!empty($model["dataPelanggaran"])): ?>
-    <select name="pilihlanggaran" id="pilihlanggaran" class="pilihlanggaran">
-        <optgroup>
-            <option value="Pilih Pelanggaran" selected disabled>Pilih Pelanggaran</option>
-            <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
-                <?php
-                $selected = ($dataPelanggaran['id_pelanggaran'] == $model["noinduk"]) ? 'selected' : '';
-                ?>
-                <option value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>"
-                    data-id-pelanggaran="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>"
-                    data-nilai-poin="<?= isset($dataPelanggaran['nilai_poin']) ? $dataPelanggaran['nilai_poin'] : '' ?>"
-                    <?= $selected ?>>
-                    <?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>
-                </option>
-            <?php endforeach; ?>
-        </optgroup>
-    </select>
-<?php endif; ?>
-<?php endif; ?>
+                  <div class="mb-3">
+
+
+                    <?php if (!empty($model["noinduk"])): ?>
+                    <?php if (!empty($model["dataPelanggaran"])): ?>
+                    <select name="pilihlanggaran" id="pilihlanggaran" class="pilihlanggaran">
+                      <optgroup>
+                        <option value="Pilih Pelanggaran" selected disabled>Pilih Pelanggaran</option>
+                        <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+                        <?php
+                        $selected = ($dataPelanggaran['id_pelanggaran'] == $model["noinduk"]) ? 'selected' : '';
+                        ?>
+                        <option value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>"
+                          data-id-pelanggaran="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>"
+                          data-nilai-poin="<?= isset($dataPelanggaran['nilai_poin']) ? $dataPelanggaran['nilai_poin'] : '' ?>"
+                          <?= $selected ?>>
+                          <?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>
+                        </option>
+                        <?php endforeach; ?>
+                      </optgroup>
+                    </select>
+                    <?php endif; ?>
+                    <?php endif; ?>
 
 
 
-<div class="mb-3">
-            <label for="pwd" id="nilaiPoinLabel" class="form-label">
-                <?= isset($model["dataPelanggaran"]['nilai_poin']) ? $model["dataPelanggaran"]['nilai_poin'] : '' ?>
-            </label>
-        </div>
+                    <div class="mb-3">
+                      <label for="pwd" id="nilaiPoinLabel" class="form-label">
+                        <?= isset($model["dataPelanggaran"]['nilai_poin']) ? $model["dataPelanggaran"]['nilai_poin'] : '' ?>
+                      </label>
+                    </div>
 
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">NIS</label>
-            <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
-        </div>
-        <div class="flex p-4 mb-4">
-            <label for="" class="w-36 inline-block">ID Pelanggaran</label>
-            <input type="" id="noinduk" name="noinduk" value="" class="w-96 border-2 border-green-500">
-        </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-            <!-- end modal tombol Melanggar -->
+                    <div class="flex p-4 mb-4">
+                      <label for="" class="w-36 inline-block">NIS</label>
+                      <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
+                    </div>
+                    <div class="flex p-4 mb-4">
+                      <label for="" class="w-36 inline-block">ID Pelanggaran</label>
+                      <input type="" id="noinduk" name="noinduk" value="" class="w-96 border-2 border-green-500">
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!-- end modal tombol Melanggar -->
 
 
 
+              </div>
+            </div>
+            <!-- END CONTENT -->
           </div>
         </div>
-        <!-- END CONTENT -->
-      </div>
-    </div>
-    <script src="../../../../asset/js/modal.js"></script>
-    <script src="../../../../asset/js/search.js"></script>
-    <script src="../../../../asset/js/scripts.js"></script>
-
-
-     <!-- Show Edit Modal -->
-    <script> function showEdit(){
-  let show = document.getElementById('formEdit');
-  show.classList.remove('hidden');
-  show.classList.add('flex');
-  setTimeout(()=>{
-    show.classList.add('opacity-100');
-  },100);
-}
-
-</script>
+        <script src="../../../../asset/js/modal.js"></script>
+        <script src="../../../../asset/js/search.js"></script>
+        <script src="../../../../asset/js/scripts.js"></script>
   </body>
 </html>

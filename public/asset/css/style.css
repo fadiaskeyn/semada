@@ -274,7 +274,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 */
 
 [type='search'] {
-  webkit-appearance: textfield;
+  -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
   /* 2 */
@@ -641,12 +641,12 @@ video {
   z-index: -10;
 }
 
-.z-0 {
-  z-index: 0;
-}
-
 .z-50 {
   z-index: 50;
+}
+
+.z-0 {
+  z-index: 0;
 }
 
 .col-span-1 {
@@ -714,6 +714,11 @@ video {
   margin-bottom: 2rem;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -766,10 +771,6 @@ video {
   margin-left: 2rem;
 }
 
-.ml-auto {
-  margin-left: auto;
-}
-
 .mr-16 {
   margin-right: 4rem;
 }
@@ -780,10 +781,6 @@ video {
 
 .mr-6 {
   margin-right: 1.5rem;
-}
-
-.mr-auto {
-  margin-right: auto;
 }
 
 .mt-12 {
@@ -820,6 +817,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
 }
 
 .block {
