@@ -209,7 +209,7 @@
                   <td class="flex border border-black gap-2 p-2">
                     <button onclick="showEdit()" type="" class="bg-green-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Edit</button>
                     <button onclick="showBtnHapus()" type="" class="bg-red-700 w-20 h-8 text-white rounded-md hover:text-gray-200">Hapus</button>
-                    <button onclick="showMelanggar()" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
+                    <button href="" type="" class="bg-gray-500 w-20 h-8 text-white rounded-md hover:text-gray-200">Melanggar</button>
                   </td>
                 </tr>
                 <?php endforeach; ?>

@@ -30,7 +30,7 @@ Router::add('GET', '/users/logout', UserController::class, 'logout', []);
 
 
 //Murid Controller
-Router::add('GET', '/admin/absen/absen_murid', muridController::class, 'absensimurid',[]);
+// Router::add('GET', '/admin/absen/absen_murid', AbsenController::class, 'absensimurid',[]);
 Router::add('GET', '/admin/data_murid', muridController::class, 'getmurid',[]);
 Router::add('GET', '/admin/data_murid/tambah', muridController::class, 'formtambahmurid',[]);
 Router::add('POST', '/admin/tambahmurid', muridController::class, 'tambahmurid',[]);
@@ -47,7 +47,7 @@ Router::add('GET', '/admin/data_guru/tambah', guruController::class, 'formtambah
 Router::add('POST', '/admin/tambahguru', guruController::class, 'tambahguru',[]);
 Router::add('GET', '/admin/data_guru/edit/([0-9a-zA-Z]*)', guruController::class, 'formupdateguru');
 Router::add('POST', '/admin/data_guru/edit', guruController::class, 'updateGuru');
-Router::add('GET', '/admin/data_guru m/hapus/([0-9a-zA-Z]*)', guruController::class, 'hapusGuru');
+Router::add('GET', '/admin/data_guru/hapus/([0-9a-zA-Z]*)', guruController::class, 'hapusGuru');
 
 //Pelanggaran Controller
 Router::add('GET', '/admin/pelanggaran', pelanggaranController::class, 'getpelanggaran',[]);
@@ -66,7 +66,7 @@ Router::add('POST', '/API/murid_login', API_Controller::class, 'apilogin', []);
 // Router::add('GET', '/API/murid_login', API_Controller::class, 'getMurid',[]);
 
 //Absensi Controller
-Router::add('GET', '/admin/absensi_murid', AbsenController::class, 'showAbsensi',[]);
+Router::add('GET', '/admin/absensi_murid', AbsenController::class, 'tampilkanabsen',[]);
 
 
 Router::run();

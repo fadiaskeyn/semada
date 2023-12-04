@@ -66,6 +66,7 @@ public function getguru()
                 'jabatan' => $_POST['jabatan'],
                 'alamat'   => $_POST['alamat'],
                 'gender'  => $_POST['gender'],
+                'role'  => $_POST['role'],
                 'password' => $_POST['password'],
             ];
     

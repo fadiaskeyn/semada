@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Data Murid</title>
+    <title>Absen Murid</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../../../../asset/css/style.css" rel="stylesheet">
   </head>
   <body class="bg-[#F3EEEA]">
     <!-- start navbar -->
@@ -13,7 +13,7 @@
         <div class="relative flex h-20 items-center justify-between">
           <div class="flex flex-1 items-stretch justify-start">
             <div class="flex items-center">
-              <img class="w-14" src="assets/icon/logosmada.png" alt="logo smada" />
+              <img class="w-14" src="../../../../asset/assets/icon/logosmada.png" alt="logo smada" />
             </div>
           </div>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -22,7 +22,7 @@
                 <span>Admin</span>
                 <button type="button"
                   class="relative flex rounded-full bg-green-400">
-                  <img class="w-10 rounded-full" src="assets/icon/user.png" alt="profileUser" />
+                  <img class="w-10 rounded-full" src="../../../../asset/assets/icon/user.png" alt="profileUser" />
                 </button>
               </div>
             </div>
@@ -42,18 +42,21 @@
                 hover:bg-green-500 hover:text-white">
                 <a href="dashboard.html" class="ml-4 w-full inline-block">Dashboard</a>
               </li>
-              <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 shadow
-                hover:bg-green-500 hover:text-gray-200">
-                <a href="data_siswa.html" class="ml-4 w-full inline-block">Data Murid</a>
+              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
+                hover:bg-green-500 hover:text-white">
+                <a href="data_siswa.html" class="ml-4 w-full inline-block">Data Staff</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
                 <a href="pelanggaran_siswa.html" class="ml-4 w-full inline-block">Pelanggaran</a>
               </li>
-              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 flex items-center shadow
+              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
+                <a href="pelanggaran_siswa.html" class="ml-4 w-full inline-block">Data Murid</a>
+              </li>
+              <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 shadow
+                hover:bg-green-500 hover:text-gray-200">
                 <a href="absen_murid.html" class="ml-4 w-full inline-block">Absen Murid</a>
-                <img src="assets/icon/Polygon.png" alt="activity" class="mr-4 w-4 h-4">
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
@@ -76,7 +79,7 @@
           <div 
             onclick="logout()"
             class="flex justify-center items-center mx-auto mb-32 bg-green-500 w-40 rounded-full text-white h-10">
-            <img src="assets/icon/icon_keluar.png" alt="logout">
+            <img src="../../../../asset/assets/icon/icon_keluar.png" alt="logout">
             <button type="" class="p-4">
               keluar
             </button>
@@ -109,7 +112,7 @@
       <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full">
         <!-- START CONTENT -->
         <div class="flex justify-center items-center rounded-t-lg h-16 bg-[#575757] text-center font-bold text-white text-2xl">
-          Data Murid
+          Data Absensi Murid
         </div>
         <div class="flex flex-col h-full w-full p-24">
           <div class="w-full h-16 flex justify-end items-center">
@@ -119,50 +122,26 @@
 
           <div class="h-full w-full overflow-auto">
             <table class="my-8 py-12 w-full">
+              <thead>
+                <tr class="text-center">
+                    <th class="border border-black">NIS</th>
+                    <th class="border border-black">Nama</th>
+                    <th class="border border-black">Kelas</th>
+                    <th class="border border-black">Status</th>
+                </tr>
+            </thead>
+            <?php if(!empty($model["dataAbsen"])) : ?>
+            <?php foreach($model["dataAbsen"] as $guru) : ?>
               <tr class="text-center">
-                <th class="border border-black">Absen</th>
-                <th class="border border-black">Nis</th>
-                <th class="border border-black">Nama</th>
-                <th class="border border-black">Jenis Kelamin</th>
-                <th class="border border-black">Kelas</th>
-                <th class="border border-black">Action</th>
+                <td class="border border-black"><?= $guru['noinduk'] ?></td>
+                <td class="border border-black"><?= $guru['nama'] ?></td>
+                <td class="border border-black"><?= $guru['kelas'] ?></td>
+                <td class="border border-black"><?= $guru['status'] ?></td>
+              
+
               </tr>
-              <tr class="text-center">
-                <td class="border border-black">1</td>
-                <td class="border border-black">15098</td>
-                <td class="border border-black">Dimas Fajar Kurniawan</td>
-                <td class="border border-black">L</td>
-                <td class="border border-black">XI MIPA 4</td>
-                <td class="border border-black gap-2 p-2">
-                  <button 
-                    onclick="showEdit()"
-                    type="" class="bg-green-500 w-1/4 text-white rounded-md hover:text-gray-200">Edit</button>
-                  <button 
-                    onclick="showBtnHapus()"
-                    type="" class="bg-red-700 w-1/4 text-white rounded-md hover:text-gray-200">Hapus</button>
-                  <button 
-                    onclick="showMelanggar()"
-                    type="" class="bg-gray-500 w-28 text-white rounded-md hover:text-gray-200">Melanggar</button>
-                </td>
-              </tr>
-              <tr class="text-center">
-                <td class="border border-black">2</td>
-                <td class="border border-black">15062</td>
-                <td class="border border-black">Fadias Nur Ahmadi</td>
-                <td class="border border-black">L</td>
-                <td class="border border-black">XI MIPA 4</td>
-                <td class="border border-black gap-2 p-2">
-                  <button 
-                    onclick="showEdit()"
-                    type="" class="bg-green-500 w-1/4 text-white rounded-md hover:text-gray-200">Edit</button>
-                  <button 
-                    onclick="showBtnHapus()"
-                    type="" class="bg-red-700 w-1/4 text-white rounded-md hover:text-gray-200">Hapus</button>
-                  <button 
-                    onclick="showMelanggar()"
-                    type="" class="bg-gray-500 w-28 text-white rounded-md hover:text-gray-200">Melanggar</button>
-                </td>
-              </tr>
+              <?php endforeach; ?>
+              <?php endif; ?>
             </table>
             <!-- MODAL ACTION -->
             <!-- start modal tombol edit -->
@@ -207,9 +186,10 @@
               <div 
                 onclick="event.stopImmediatePropagation()"
                 class="text-center bg-[#EAFFEF] w-3/12 h-64 rounded-lg shadow">
-                <h1 class="mx-auto my-5 py-6 w-80">Apakah anda ingin menghapus data siswa nama_siswa ?</h1>
+                <h1 class="mx-auto my-5 py-6 w-80">Apakah anda ingin menghapus data ini?</h1>
                 <div class="flex my-12 justify-evenly items-center">
-                  <button type="" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">Ya</button>
+                <button onclick="deleteData('/admin/data_guru/hapus/<?= $guru['noinduk'] ?>')" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">Ya</button>
+
                   <button 
                     onclick="hideBtnHapus()"
                     type="" class="bg-green-500 w-20 rounded-full text-white text-lg hover:bg-green-600">Tidak</button>
@@ -255,6 +235,6 @@
         <!-- END CONTENT -->
       </div>
     </div>
-    <script src="js/modal.js"></script>
+    <script src="../../../../asset/js/modal.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Rekap Absen</title>
+    <title>Data Staff</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../../../asset/css/style.css" rel="stylesheet">
@@ -42,13 +42,17 @@
                 hover:bg-green-500 hover:text-white">
                 <a href="dashboard.html" class="ml-4 w-full inline-block">Dashboard</a>
               </li>
-              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
-                hover:bg-green-500 hover:text-white">
-                <a href="data_siswa.html" class="ml-4 w-full inline-block">Data Murid</a>
+              <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 shadow
+                hover:bg-green-500 hover:text-gray-200">
+                <a href="data_siswa.html" class="ml-4 w-full inline-block">Data Staff</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
                 <a href="pelanggaran_siswa.html" class="ml-4 w-full inline-block">Pelanggaran</a>
+              </li>
+              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
+                hover:bg-green-500 hover:text-white">
+                <a href="pelanggaran_siswa.html" class="ml-4 w-full inline-block">Data Murid</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 flex items-center shadow
                 hover:bg-green-500 hover:text-white">
@@ -63,8 +67,8 @@
                 hover:bg-green-500 hover:text-white">
                 <a href="rekap_pelanggar.html" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
               </li>
-              <li class="mb-4 text-white bg-[#1CC642] rounded-md font-semibold py-1 shadow
-                hover:bg-green-500 hover:text-gray-200">
+              <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
+                hover:bg-green-500 hover:text-white">
                 <a href="rekap_absen.html" class="ml-4 w-full inline-block">Rekap Absen</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
@@ -83,7 +87,8 @@
           </div>
         </div>
         <!-- End Sidebar -->
-        <!-- Modal Sidebar -->
+        <!-- MODAL SIDEBAR -->
+        <!-- @logout -->
         <div 
           onclick="exitLogout()"
           id="modalLogout"
@@ -103,12 +108,12 @@
             </div>
           </div>
         </div>
+
       </div>
       <div class="flex flex-col w-full  mt-8 mr-16 rounded-lg bg-white h-full">
         <!-- START CONTENT -->
-
         <div class="flex justify-center items-center rounded-t-lg h-16 bg-[#575757] text-center font-bold text-white text-2xl">
-          Rekap Absen
+          Data Staff Dan Karyawan
         </div>
         <div class="flex flex-col h-full w-full p-24">
           <div class="w-full h-16 flex justify-end items-center">
@@ -118,25 +123,61 @@
 
           <div class="h-full w-full overflow-auto">
             <table class="my-8 py-12 w-full">
+              <thead>
+                <tr class="text-center">
+                    <th class="border border-black">NIS</th>
+                    <th class="border border-black">Nama</th>
+                    <th class="border border-black">Kelas</th>
+                    <th class="border border-black">Status</th>
+                </tr>
+            </thead>
+            <?php if(!empty($model["dataAbsen"])) : ?>
+            <?php foreach($model["dataAbsen"] as $guru) : ?>
               <tr class="text-center">
-                <th class="border border-black">No</th>
-                <th class="border border-black">Nama</th>
-                <th class="border border-black">Kelas</th>
-                <th class="border border-black">Izin</th>
-                <th class="border border-black">Sakit</th>
-                <th class="border border-black">Alpha</th>
-                <th class="border border-black">Presentase</th>
+                <td class="border border-black"><?= $guru['noinduk'] ?></td>
+                <td class="border border-black"><?= $guru['nama'] ?></td>
+                <td class="border border-black"><?= $guru['kelas'] ?></td>
+                <td class="border border-black"><?= $guru['status'] ?></td>
+              
+
               </tr>
-              <tr class="text-center">
-                <td class="border border-black">1</td>
-                <td class="border border-black">Rahmatullah</td>
-                <td class="border border-black">XI A</td>
-                <td class="border border-black">-</td>
-                <td class="border border-black">-</td>
-                <td class="border border-black">-</td>
-                <td class="border border-black">100%</td>
-              </tr>
+              <?php endforeach; ?>
+              <?php endif; ?>
             </table>
+            <!-- MODAL ACTION -->
+            <!-- start modal tombol edit -->
+            <div 
+              onclick="closeEdit()"
+              id="formEdit"
+              class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
+              <div 
+                class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
+                <div 
+                  onclick="closeEdit()"
+                  class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+                  <h1>Edit Pelanggaran</h1>
+                  <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
+                </div>
+                <form
+                  onclick="event.stopImmediatePropagation()"
+                >
+                  <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Jenis Pelanggaran</label>
+                    <input type="" name="" value="" class="w-96 border-2 border-green-500">
+                  </div>
+                  <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Keterangan</label>
+                    <textarea rows="3" cols="40" class="border-2 border-green-500">Terlambat</textarea>
+                  </div>
+                  <div class="flex justify-end p-4">
+                    <button
+                      onclick="submitEdit()"
+                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- end modal tombol edit -->
             <!-- start modal tombol hapus-->
             <div 
               onclick="hideBtnHapus()"
@@ -145,10 +186,11 @@
               opacity-0 hidden transition-opacity duration-200">
               <div 
                 onclick="event.stopImmediatePropagation()"
-                class="text-center bg-white w-3/12 h-64 rounded-lg shadow">
-                <h1 class="text-red-600 font-bold mx-auto my-5 py-6 w-80">Peringatan data berikut akan dihapus secara permanen! setuju atau tidak</h1>
+                class="text-center bg-[#EAFFEF] w-3/12 h-64 rounded-lg shadow">
+                <h1 class="mx-auto my-5 py-6 w-80">Apakah anda ingin menghapus data ini?</h1>
                 <div class="flex my-12 justify-evenly items-center">
-                  <button type="" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">Setuju</button>
+                <button onclick="deleteData('/admin/data_guru/hapus/<?= $guru['noinduk'] ?>')" class="bg-red-500 w-20 rounded-full text-white text-lg hover:bg-red-600">Ya</button>
+
                   <button 
                     onclick="hideBtnHapus()"
                     type="" class="bg-green-500 w-20 rounded-full text-white text-lg hover:bg-green-600">Tidak</button>
@@ -156,83 +198,41 @@
               </div>
             </div>
             <!-- end modal tombol hapus-->
-            <div class="flex flex-row mb-3 p-2 justify-end">
-              <button 
-                type="submit" 
-                class="hidden justify-center items-center w-40 h-10 rounded-xl bg-green-500 text-white"
-              >Cetak Absen</button>
-            </div>
-            <!-- Start Modal Detail Siswa-->
-            <div
-              onclick="showTambahSiswa()"
-              id="tambahSiswa"
-              class="fixed top-0 left-0 bg-black w-screen h-screen bg-opacity-50 justify-center items-center 
-              transition-opacity hidden opacity-0 duartion-200">
-              <div
-                class="relative w-1/2 h-4/5 bg-[#EAFFEF] rounded-lg my-10 mx-auto overflow-hidden">
-                <div 
-                  class="p-2 bg-green-500 text-center font-semibold text-2xl text-white">
-                  <h1>Detail Siswa ?nama_siswa</h1>
-                  <div class="absolute top-1 right-6 font-semibold text-white text-3xl">
-                    <button
-                      onclick="hideTambahSiswa()"
-                      type="" class="hover:text-gray-200">X</button>
-                  </div>
-                </div>
-                <div 
-                  onclick="event.stopImmediatePropagation()"
-                  class="p-16 rounded-b-lg">
-                  <form>
-                    <div class="mb-2 w-full">
-                      <label for="" class="font-semibold inline-block w-52">Nis</label>
-                      <input type="text" name="" value="" class="border border-green-500 px-2 w-1/2">
-                    </div>
-                    <div class="mb-2 w-full">
-                      <label for="" class="font-semibold inline-block w-52">Nama</label>
-                      <input type="text" name="" value="" class="border border-green-500 px-2 w-1/2">
-                    </div>
-                    <div class="mb-2 w-full">
-                      <label for="" class="font-semibold inline-block w-52">Kelas</label>
-                      <input type="text" name="" value="" class="border border-green-500 px-2 w-1/2">
-                    </div>
-                    <div class="mb-2 w-full">
-                      <label for="" class="font-semibold inline-block w-52">Jenis Kelamin</label>
-                      <input type="text" name="" value="" class="border border-green-500 px-2 w-1/2">
-                    </div>
-                    <div class="mb-2 w-full">
-                      <label for="" class="font-semibold inline-block w-52">Alasan</label>
-                      <input type="text" name="" value="" class="inline-block border border-green-500 px-2 w-1/2 h-24">
-                    </div>
-                    <div class="flex mb-2 w-full">
-                      <label for="" class="font-semibold inline-block w-52">Berkas pendukung</label>
-                      <a href="https://cdn-cms.pgimgs.com/static/2022/04/Contoh-Surat-Persetujuan-Orang-Tua.pdf" target="_blank" class="flex text-blue-700">
-                        <img src="../../../../asset/assets/icon/pdf.png" alt="" class="w-4 mx-1">
-                          file_izin_rahmatullah.pdf</a>
-                    </div>
-
-                  </form>
-                  <div 
-                    onclick="showNotifSuccess()"
-                    class="mt-6 flex w-full justify-end font-semibold text-white">
-                    <button type="" class="mr-6 p-2 bg-green-500 w-32 rounded-full">Simpan</button>
-                  </div>
-                </div>
-              </div>
-              <!-- start notif berhasil-->
+            <!-- start modal tombol Melanggar -->
+            <div 
+              onclick="closeMelanggar()"
+              id="formMelanggar"
+              class="fixed w-screen h-screen bg-black bg-opacity-50 top-0 left-0 justify-center items-center transition-opacity duration-200 opacity-0 hidden">
               <div 
-                onclick="showNotifSuccess()"
-                id="successEdit"
-                class="absolute justify-between p-6 items-center text-green-500 text-xl font-semibold top-40 right-28 border rounded-lg bg-white w-60 h-12 transition-opacity hidden opacity-0 duartion-200">
-                <img src="../../../../asset/assets/icon/check.png" alt="" class="w-10">
-                <h1> Data Berhasil diperbaharui </h1>
+                class="bg-[#E8FDED] mx-auto w-[40rem] mt-16 overflow-hidden rounded-lg">
+                <div 
+                  onclick="closeMelanggar()"
+                  class="relative bg-[#1CC642] text-center text-2xl font-bold text-white w-full h-12 flex items-center justify-center">
+                  <h1>Pilih Pelanggaran</h1>
+                  <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer">X</span>
+                </div>
+                <form
+                  onclick="event.stopImmediatePropagation()"
+                >
+                  <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Jenis Pelanggaran</label>
+                    <input type="" name="" value="" class="w-96 border-2 border-green-500">
+                  </div>
+                  <div class="flex p-4 mb-4">
+                    <label for="" class="w-36 inline-block">Keterangan</label>
+                    <textarea rows="3" cols="40" class="border-2 border-green-500">Terlambat</textarea>
+                  </div>
+                  <div class="flex justify-end p-4">
+                    <button
+                      onclick="submitMelanggar()"
+                      type="submit" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
+                  </div>
+                </form>
               </div>
-              <!-- end notif berhasil-->
-
             </div>
-            <!-- End Modal form tambah siswa-->
+            <!-- end modal tombol Melanggar -->
           </div>
         </div>
-
         <!-- END CONTENT -->
       </div>
     </div>

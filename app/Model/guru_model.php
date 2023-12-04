@@ -25,8 +25,8 @@ private \PDO $conn;
     
   
     public function tambah($data) {
-        $query = "INSERT INTO staff (noinduk, nama, jabatan, alamat, gender, password) 
-                  VALUES (:noinduk, :nama, :jabatan, :alamat, :gender, :password)";
+        $query = "INSERT INTO staff (noinduk, nama, jabatan, alamat, gender,role, password) 
+                  VALUES (:noinduk, :nama, :jabatan, :alamat, :gender, :role, :password)";
         $stmt = $this->conn->prepare($query);
     
         if (!$stmt) {
@@ -36,7 +36,8 @@ private \PDO $conn;
         $stmt->bindParam(':nama', $data['nama']); 
         $stmt->bindParam(':jabatan', $data['jabatan']);
         $stmt->bindParam(':alamat', $data['alamat']);
-        $stmt->bindParam(':gender', $data['gender']);
+        $stmt->bindParam(':gender', $data['gender']);   
+        $stmt->bindParam(':role', $data['role']);   
         $stmt->bindParam(':password', $data['password']); 
     
         $stmt->execute();

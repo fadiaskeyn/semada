@@ -30,6 +30,13 @@
               <input type="text" class="form-control" id="gender" name="gender">
             </div>
             <div class="form-group">
+              <label for="pwd" class="form-label"> Level (Pilih Salah Satu) </label>
+              <select class="form-control" id="role" name="role">
+              <option value="admin">admin</option>
+              <option value="guru">guru</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="pwd" class="form-label">Password  </label>
               <input type="text" class="form-control" id="password"  name="password">
             </div>
