@@ -82,7 +82,6 @@ public function getMuridById($noinduk)
             if (!$stmt) {
                 die('Error preparing statement: ' . $this->conn->error);
             }
-
             $stmt->bindParam(':absen', $data['absen']);
             $stmt->bindParam(':noinduk', $data['noinduk']);
             $stmt->bindParam(':gender', $data['gender']);

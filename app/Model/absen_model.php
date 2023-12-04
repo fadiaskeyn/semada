@@ -1,65 +1,76 @@
 <?php
+
 namespace dfdiag\Belajar\PHP\MVC\Model;
+namespace dfdiag\Belajar\PHP\MVC\Model\murid_model;
 
 use PDO;
 use PDOException;
 
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
+use Kreait\Firebase\Storage;
 
-class AbsensiModel
+class absen_model
 {
     private $database;
-    private \PDO $conn;
+    private $conn;
 
     public function __construct()
     {
         // Konfigurasi Firebase
-        $this->conn = $conn;
         $serviceAccount = ServiceAccount::fromJsonFile(DIR . '../../../../asset/semada.json');
 
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->create();
-        
+
         $this->database = $firebase->getDatabase();
+
+        // Konfigurasi database MySQL
+        $this->conn = new PDO("mysql:host=localhost:3306;dbname=semada2", "root", "");
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public function getAbsensiData($userId)
     {
-        // Ambil data absensi dari Firebase berdasarkan user ID
-        // ...
+        // Ambil data absensi dari Firebase
+        $absensiDataFirebase = $this->database->getReference("absen/{$userId}")->getValue();
 
-        // For illustration purposes, let's assume you have a MySQL table named 'images'
-        // with a column 'filename'. Adjust the SQL query accordingly.
+        // Ambil data absensi dari MySQL
         $sql = "SELECT bukti FROM absen WHERE noinduk = :noinduk";
-        
-        try {
-            $pdo = new PDO("mysql:host=localhost;dbname=semada2", "semada2", "");
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $stmt = $pdo->prepare($sql);
+        try {
+            $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':noinduk', $userId, PDO::PARAM_STR);
             $stmt->execute();
 
-            $filenames = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            $bukti = $stmt->fetchColumn();
 
-            // Iterate through filenames and fetch image URLs from Firebase Storage
-            $imageUrls = [];
-            foreach ($filenames as $filename) {
-                $imageReference = $this->database->getReference("images/$filename");
-                $imageUrl = $imageReference->getValue(); // Assuming the image URL is stored in Firebase
-                $imageUrls[] = $imageUrl;
-            }
+            // Gabungkan data absensi dari Firebase dan MySQL
+            $absensiData = array_merge($absensiDataFirebase, ['bukti' => $bukti]);
 
-            // Combine image filenames and URLs into an associative array
-            $result = array_combine($filenames, $imageUrls);
-
-            return $result;
+            return $absensiData;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
 
         return null;
     }
+
+    public function getAbsensiDataWithImageAndDetails($userId)
+    {
+        // $absensiData = $this->getAbsensiData($userId);
+
+        // Tambahkan kode untuk mengambil data detail
+        $muridData = $this->murid_model->getMuridById($userId);
+
+        // Gabungkan data detail ke data absensi
+        $absensiData['noinduk'] = $muridData['noinduk'];
+        $absensiData['nama'] = $muridData['nama'];
+        $absensiData['kelas'] = $muridData['kelas'];
+        $absensiData['status'] = $muridData['status'];
+
+        return $absensiData;
+    }
 }
+

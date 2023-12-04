@@ -2,28 +2,33 @@
 
 namespace dfdiag\Belajar\PHP\MVC\Controller;
 
-use dfdiag\Belajar\PHP\MVC\App\View;
 use dfdiag\Belajar\PHP\MVC\Model\AbsensiModel;
+use dfdiag\Belajar\PHP\MVC\View\AbsensiView;
 
-class AbsenController {
+class AbsenController
+{
     private $absensiModel;
+    private $absensiView;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->absensiModel = new AbsensiModel();
+        $this->absensiView = new AbsensiView();
     }
 
-    public function showAbsensi($userId) {
-        $absensiData = $this->absen_model->getAbsensiData($userId);
-    
-        // Load view dan kirim data absensi
-        View::render('admin/absen_murid', [
+    public function showAbsensi($userId)
+    {
+        $absensiData = $this->absensiModel->getAbsensiDataWithImageAndDetails($userId);
+
+        // Cek apakah URL gambar ada
+        $buktiUrl = $absensiData['buktiUrl'];
+        if (empty($buktiUrl)) {
+            $buktiUrl = 'tidak_ada_gambar.png'; // Placeholder image
+        }
+
+        $this->absensiView->render('admin/absen_murid', [
             'absensiData' => $absensiData
         ]);
     }
-
-    public function submitAbsensi($userId, $absensiData) {
-        $this->absensiModel->setAbsensiData($userId, $absensiData);
-    
-        // Redirect atau berikan respons sesuai kebutuhan
-    }
 }
+

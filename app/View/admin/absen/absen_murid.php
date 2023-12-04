@@ -128,25 +128,28 @@
           <div class="h-full w-full overflow-auto">
             <table class="py-12 w-full">
               <thead id="tableHeader" class="sticky top-0 z-0">
-                <tr class="text-center">
-                  <th class="border border-black">Absen</th>
-                  <th class="border border-black">Nama</th>
-                  <th class="border border-black">Kelas</th>
-                  <th class="border border-black">Keterangan</th>
-                  <th class="border border-black">Bukti Hadir</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="text-center table-row">
-                  <td name = "absen" class="border border-black">1</td>
-                  <td name = "nama" class="border border-black">Rahmatullah</td>
-                  <td name = "kelas" class="border border-black">XI MIPA 2</td>
-                  <td name = "status" class="text-green-500 font-bold border border-black">Masuk</td>
-                  <td name="bukti" class="border border-black">
-                    <!-- Tambahkan elemen img untuk menampilkan gambar -->
-                    <img src="<?php echo $filename; ?>" alt="Bukti Hadir" class="w-24 h-24">
-                  </td>
-                </tr>
+              <tr>
+            <th class="text-center">Nomor Induk</th>
+            <th class="text-center">Nama</th>
+            <th class="text-center">Kelas</th>
+            <th class="text-center text-green-500 font-bold">Status</th>
+            <th class="text-center">Bukti</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center"><?php echo $absensiData['noinduk']; ?></td>
+            <td class="text-center"><?php echo $absensiData['nama']; ?></td>
+            <td class="text-center"><?php echo $absensiData['kelas']; ?></td>
+            <td class="text-center"><?php echo $absensiData['status']; ?></td>
+            <td class="text-center">
+                <?php if (!empty($buktiUrl)): ?>
+                    <img src="<?php echo $buktiUrl; ?>" alt="Bukti Hadir" class="w-24 h-24 rounded-full">
+                <?php else: ?>
+                    Tidak ada gambar
+                <?php endif; ?>
+            </td>
+        </tr>
               </tbody>
             </table>
             <!-- start modal tombol hapus-->

@@ -231,31 +231,47 @@
                   <span class="absolute right-8 hover:text-red-800 hover:cursor-pointer" onclick="closeEdit()">X</span>
                 </div>
 
-                <form onclick="event.stopImmediatePropagation()" action="/some_action_endpoint" method="post">
-                  <?php if (!empty($model["dataPelanggaran"])): ?>
-                  <div class="flex p-4 mb-4">
-                    <select name="pilihlanggaran" id="pilihlanggaran" class="w-96 border-2 border-green-500">
-                      <optgroup>
-                        <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
-
-                        <option value="<?= $dataPelanggaran['id_pelanggaran'] ?>" <?= $selected ?>
-                          data-id-pelanggaran="<?= $dataPelanggaran['id_pelanggaran'] ?>"
-                          data-nilai-poin="<?= $dataPelanggaran['nilai_poin'] ?>">
-                          <?= $dataPelanggaran['nama'] ?>
+                <?php if (!empty($model["noinduk"])): ?>
+    <?php if (!empty($model["dataPelanggaran"])): ?>
+        <form method="post" action="your_action_page.php">
+            <select name="pilihlanggaran" id="pilihlanggaran" class="pilihlanggaran">
+                <optgroup>
+                    <option value="Pilih Pelanggaran" selected disabled>Pilih Pelanggaran</option>
+                    <?php foreach ($model["dataPelanggaran"] as $dataPelanggaran): ?>
+                        <?php
+                        $selected = ($dataPelanggaran['id_pelanggaran'] == $model["dataPelanggaran"]['id_pelanggaran']) ? 'selected' : '';
+                        ?>
+                        <option value="<?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>"
+                            data-id-pelanggaran="<?= isset($dataPelanggaran['id_pelanggaran']) ? $dataPelanggaran['id_pelanggaran'] : '' ?>"
+                            data-nilai-poin="<?= isset($dataPelanggaran['nilai_poin']) ? $dataPelanggaran['nilai_poin'] : '' ?>"
+                            <?= $selected ?>>
+                            <?= isset($dataPelanggaran['nama']) ? $dataPelanggaran['nama'] : '' ?>
                         </option>
-                        <?php endforeach ?>
-                      </optgroup>
-                    </select>
-                  </div>
-                  <div class="flex p-4 mb-4">
-                    <label for="" class="w-36 inline-block">Catatan untuk Murid: </label>
-                    <textarea rows="3" cols="40" class="border-2 border-green-500" name="catatanMurid"></textarea>
-                  </div>
-                  <div class="flex justify-end p-4">
-                    <button type="button" onclick="submitEdit()" class="w-36 h-8 bg-green-500 text-white shadow rounded-full">Simpan</button>
-                  </div>
-                </form>
-                <?php endif; ?>
+                    <?php endforeach; ?>
+                </optgroup>
+            </select>
+
+            <div class="mb-3">
+                <label for="pwd" id="nilaiPoinLabel" class="form-label">
+                    <?= isset($model["dataPelanggaran"]['nilai_poin']) ? $model["dataPelanggaran"]['nilai_poin'] : '' ?>
+                </label>
+            </div>
+
+            <div class="flex p-4 mb-4">
+                <label for="" class="w-36 inline-block">NIS</label>
+                <input type="" id="noinduk" name="noinduk" value="<?= isset($dataMurid['noinduk']) ? $dataMurid['noinduk'] : '' ?>" class="w-96 border-2 border-green-500">
+            </div>
+
+            <div class="flex p-4 mb-4">
+                <label for="" class="w-36 inline-block">ID Pelanggaran</label>
+                <input type="" id="id_pelanggaran" name="id_pelanggaran" value="" class="w-96 border-2 border-green-500">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    <?php endif; ?>
+<?php endif; ?>
+
               </div>
             </div>
 
