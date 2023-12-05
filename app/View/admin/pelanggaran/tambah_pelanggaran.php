@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card card-primary my-5">
         <div class="card-header bg-success">
-          <h3 class="card-title text-light">Form Tambah Data Murid</h3>
+          <h3 class="card-title text-light">Form Tambah Data Pelanggaran</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
