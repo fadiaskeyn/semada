@@ -15,31 +15,18 @@ use dfdiag\Belajar\PHP\MVC\Repository\UserRepository;
 use dfdiag\Belajar\PHP\MVC\Service\UserService;
 
 
-class AbsenController{
+class AbsenizinController{
 
     private $absen;
 public function __construct(){
     $conn = Database::getConnection();
     $this->absen = new absen_model($conn);
 }
-public function tampilkanabsenizin()
+public function tampilkanabsen()
     {
         $conn = Database::getConnection();
         $absenModel = new absen_model($conn);
         $dataAbsen = $absenModel->tampilkanabsen();
-        View::render('admin/absen/absen_murid',
-         [
-            "title" => 'Data Absensi Murid',
-            "dataAbsen" => $dataAbsen
-        ]);
-        // return view(admin.data_murid', ['dataMurid' => $dataMurid]);
-    }
-    
-    public function tampilkanabsen()
-    {
-        $conn = Database::getConnection();
-        $absenModel = new absen_model($conn);
-        $dataAbsen = $absenModel->tampilkanabsenizin();
         View::render('admin/absen/absen_murid',
          [
             "title" => 'Data Absensi Murid',

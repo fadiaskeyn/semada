@@ -66,6 +66,7 @@ Router::add('POST', '/API/murid_login', API_Controller::class, 'apilogin', []);
 // Router::add('GET', '/API/murid_login', API_Controller::class, 'getMurid',[]);
 
 //Absensi Controller
+Router::add('GET', '/admin/izin_murid', AbsenController::class, 'tampilkanabsenizin',[]);
 Router::add('GET', '/admin/absensi_murid', AbsenController::class, 'tampilkanabsen',[]);
 
 

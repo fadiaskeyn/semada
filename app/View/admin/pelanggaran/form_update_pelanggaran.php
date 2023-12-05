@@ -1,3 +1,4 @@
+
 <?php if (!empty($model["dataPelanggaran"])): ?>
 <div class="container">
     <div class="row justify-content-center">

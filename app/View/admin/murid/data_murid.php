@@ -59,15 +59,14 @@
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
                 <a 
-                  onclick="alert(':( Sorry we have trouble')"
+                  
                   href="" class="ml-4 w-full inline-block">Permohonan Izin Murid</a>
               </li>
               <li class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
-                <a href="./murid_nakal/daftar_murid_nakal" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
+                <a href="/admin/murid_nakal/daftar_murid_nakal" class="ml-4 w-full inline-block">Rekap Pelanggaran</a>
               </li>
               <li 
-                onclick="alert(':( Sorry we have trouble')"
                 class="mb-4 bg-gray-200 rounded-md font-semibold py-1 shadow
                 hover:bg-green-500 hover:text-white">
                 <a href="" class="ml-4 w-full inline-block">Rekap Absen</a>
