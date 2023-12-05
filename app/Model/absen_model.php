@@ -16,7 +16,9 @@ private \PDO $conn;
         try {
             $query = "SELECT m.noinduk, m.nama, m.kelas, a.status
             FROM murids m 
-            JOIN absen a ON m.noinduk = a.noinduk";
+            JOIN absen a ON m.noinduk = a.noinduk
+            WHERE a.status IN ('hadir', 'alpa');
+            ";
 
             $statement = $this->conn->query($query);
             return $statement->fetchAll(PDO::FETCH_ASSOC);

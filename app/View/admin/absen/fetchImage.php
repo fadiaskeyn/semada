@@ -1,7 +1,7 @@
 <?php
 
-require 'vendor/autoload.php';
-
+require '../vendor/autoload.php';
+// require '../vendor';
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Storage\StorageClient;
 

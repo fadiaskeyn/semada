@@ -1,6 +1,3 @@
-<?php
-include 'fetchImage.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +6,7 @@ include 'fetchImage.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../../../asset/css/style.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-storage.js"></script>
 <script>
       const firebaseConfig = {
@@ -22,7 +19,7 @@ include 'fetchImage.php';
   measurementId: "G-N71HDT1BN2"
 };
       firebase.initializeApp(firebaseConfig);
-    </script>
+    </script> -->
   </head>
   <body class="bg-[#F3EEEA]">
     <!-- start navbar -->
@@ -157,7 +154,7 @@ include 'fetchImage.php';
                 <td class="border border-black"><?= $guru['kelas'] ?></td>
                 <td class="border border-black"><?= $guru['status'] ?></td>
                 <td class="border border-black">
-                    <img src="<?= $imageUrl ?>" alt="Bukti Absen">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/semada-48ad2.appspot.com/o/images%2Fimage_1701371591448.jpg?alt=media&token=5c924202-4cc0-4c8f-84e8-805ffb2e23b5" alt="Bukti Absen">
                 </td>
 
 
